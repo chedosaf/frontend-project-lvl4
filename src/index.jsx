@@ -33,8 +33,3 @@ container.append(card); */
 const App = () => (<div>Hellooooouuu</div>);
 
 console.log('it works 1111111!');
-
-ReactDOM.render(
-  App,
-  document.getElementById('react-root'),
-);
