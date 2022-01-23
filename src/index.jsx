@@ -4,7 +4,7 @@ import 'core-js/stable/index.js';
 import 'regenerator-runtime/runtime.js';
 
 import '../assets/application.scss';
-import ReactDOM from 'react';
+import ReactDOM from 'react-dom';
 
 const React = require('react');
 
@@ -31,5 +31,10 @@ card.append(cardBody);
 const container = document.querySelector('#chat');
 container.append(card); */
 const App = () => (<div>Hellooooouuu</div>);
+const vdom = (<App />);
+
+ReactDOM.render(
+  vdom, document.getElementById('react-root'),
+);
 
 console.log('it works 1111111!');
