@@ -4,12 +4,15 @@ import 'core-js/stable/index.js';
 import 'regenerator-runtime/runtime.js';
 
 import '../assets/application.scss';
+import ReactDOM from 'react';
+
+const React = require('react');
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
 
-const p = document.createElement('p');
+/* const p = document.createElement('p');
 p.classList.add('card-text');
 p.textContent = 'It works!';
 
@@ -26,6 +29,12 @@ card.classList.add('card', 'text-center');
 card.append(cardBody);
 
 const container = document.querySelector('#chat');
-container.append(card);
+container.append(card); */
+const App = () => (<div>Hellooooouuu</div>);
 
 console.log('it works 1111111!');
+
+ReactDOM.render(
+  App,
+  document.getElementById('react-root'),
+);
