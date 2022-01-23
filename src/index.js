@@ -34,5 +34,5 @@ console.log('it works!');
 
 ReactDOM.render(
   NotFoundPage,
-  document.getElementById('warning-container'),
+  document.getElementById('react-root'),
 );
