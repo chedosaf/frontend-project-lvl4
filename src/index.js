@@ -4,6 +4,8 @@ import 'core-js/stable/index.js';
 import 'regenerator-runtime/runtime.js';
 
 import '../assets/application.scss';
+import { React, ReactDOM } from 'react';
+import NotFoundPage from './notFoundpage.jsx';
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
@@ -29,3 +31,8 @@ const container = document.querySelector('#chat');
 container.append(card);
 
 console.log('it works!');
+
+ReactDOM.render(
+  NotFoundPage,
+  document.getElementById('warning-container'),
+);
