@@ -30,11 +30,5 @@ card.append(cardBody);
 
 const container = document.querySelector('#chat');
 container.append(card); */
-const App = () => (<div>Hellooooouuu</div>);
-const vdom = (<App />);
-
-ReactDOM.render(
-  vdom, document.getElementById('warning-container'),
-);
 
 console.log('it works 1111111!');
