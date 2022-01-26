@@ -30,13 +30,13 @@ const App = () => (
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/bb">NotFoundPage</Link>
+            <Link to="/notfoundpage">NotFoundPage</Link>
           </li>
         </ul>
       </nav>
       <Routes>
         <Route path="/" element={<SignupForm />} />
-        <Route path="/bb" element={<NotFoundPage />} />
+        <Route path="/notfoundpage" element={<NotFoundPage />} />
       </Routes>
     </div>
   </Router>
@@ -63,4 +63,4 @@ card.append(cardBody);
 const container = document.querySelector('#chat');
 container.append(card); */
 
-console.log('it works now1!');
+console.log('it works now!');
