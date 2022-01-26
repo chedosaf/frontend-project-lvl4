@@ -22,7 +22,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const App = () => (
-  /* <Router>
+  <Router>
     <div>
       <nav>
         <ul>
@@ -39,8 +39,8 @@ const App = () => (
         <Route path="/bb" element={<NotFoundPage />} />
       </Routes>
     </div>
-  </Router> */
-  <NotFoundPage />
+  </Router>
+
 );
 
 ReactDOM.render(<App />, document.querySelector('#chat'));
