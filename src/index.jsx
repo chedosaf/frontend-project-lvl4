@@ -7,7 +7,7 @@ import '../assets/application.scss';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
   Link,
 } from 'react-router-dom';
@@ -34,14 +34,14 @@ const App = () => (
           </li>
         </ul>
       </nav>
-
-      <Route path="/">
-        <SignupForm />
-      </Route>
-      <Route path="/bb">
-        <NotFoundPage />
-      </Route>
-
+      <Routes>
+        <Route path="/">
+          <SignupForm />
+        </Route>
+        <Route path="/bb">
+          <NotFoundPage />
+        </Route>
+      </Routes>
     </div>
   </Router>
 );
