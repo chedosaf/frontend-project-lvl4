@@ -5,6 +5,15 @@ import 'regenerator-runtime/runtime.js';
 
 import '../assets/application.scss';
 import ReactDOM from 'react-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+} from 'react-router-dom';
+
+import SignupForm from './loginForm.jsx';
+import NotFoundPage from './notFoundpage.jsx';
 
 const React = require('react');
 
@@ -12,9 +21,32 @@ if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
 
-const Div = () => (<div>ihihhgugj</div>);
+const App = () => (
+  <Router>
+    <div>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/bb">NotFoundPage</Link>
+          </li>
+        </ul>
+      </nav>
+      <Switch>
+        <Route path="/">
+          <SignupForm />
+        </Route>
+        <Route path="/bb">
+          <NotFoundPage />
+        </Route>
+      </Switch>
+    </div>
+  </Router>
+);
 
-ReactDOM.render(<Div />, document.querySelector('#chat'));
+ReactDOM.render(<App />, document.querySelector('#chat'));
 /* const p = document.createElement('p');
 p.classList.add('card-text');
 p.textContent = 'It works!';
