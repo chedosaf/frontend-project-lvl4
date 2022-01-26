@@ -35,12 +35,8 @@ const App = () => (
         </ul>
       </nav>
       <Routes>
-        <Route path="/">
-          <SignupForm />
-        </Route>
-        <Route path="/bb">
-          <NotFoundPage />
-        </Route>
+        <Route path="/" element={<SignupForm />} />
+        <Route path="/bb" element={<NotFoundPage />} />
       </Routes>
     </div>
   </Router>

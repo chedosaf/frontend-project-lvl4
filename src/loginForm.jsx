@@ -10,28 +10,32 @@ const SignupForm = () => {
       password: '',
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      console.log(values);
     },
   });
   return (
     <form onSubmit={formik.handleSubmit}>
-      <label htmlFor="userName">User Name</label>
-      <input
-        id="userName"
-        name="userName"
-        type="text"
-        onChange={formik.handleChange}
-        value={formik.values.userName}
-      />
+      <label htmlFor="userName">
+        User Name
+        <input
+          id="userName"
+          name="userName"
+          type="text"
+          onChange={formik.handleChange}
+          value={formik.values.userName}
+        />
+      </label>
 
-      <label htmlFor="password">Pasword</label>
-      <input
-        id="password"
-        name="password"
-        type="text"
-        onChange={formik.handleChange}
-        value={formik.values.password}
-      />
+      <label htmlFor="password">
+        Pasword
+        <input
+          id="password"
+          name="password"
+          type="text"
+          onChange={formik.handleChange}
+          value={formik.values.password}
+        />
+      </label>
 
       <button type="submit">Submit</button>
     </form>
@@ -39,3 +43,7 @@ const SignupForm = () => {
 };
 
 export default SignupForm;
+  <label htmlFor="email">
+    Email
+    <input id="email" name="email" type="email" placeholder="Email Address" />
+  </label>;
