@@ -1,4 +1,4 @@
-import { React } from 'react';
+const React = require('react');
 
 const NotFoundPage = () => (
   <div className="d-flex flex-column h-100">

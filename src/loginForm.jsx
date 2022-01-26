@@ -1,6 +1,7 @@
-import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+
+const React = require('react');
 
 const SignupForm = () => {
   const formik = useFormik({
