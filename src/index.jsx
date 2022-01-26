@@ -27,16 +27,16 @@ const App = () => (
       <nav>
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/login">Home</Link>
           </li>
           <li>
-            <Link to="/notfoundpage">NotFoundPage</Link>
+            <Link to="/">NotFoundPage</Link>
           </li>
         </ul>
       </nav>
       <Routes>
-        <Route path="/" element={<SignupForm />} />
-        <Route path="/notfoundpage" element={<NotFoundPage />} />
+        <Route path="/login" element={<SignupForm />} />
+        <Route path="/" element={<NotFoundPage />} />
       </Routes>
     </div>
   </Router>
