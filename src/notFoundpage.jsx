@@ -1,3 +1,4 @@
+// @ts-check
 const React = require('react');
 
 const NotFoundPage = () => (

@@ -22,7 +22,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const App = () => (
-  <Router>
+  /* <Router>
     <div>
       <nav>
         <ul>
@@ -39,7 +39,8 @@ const App = () => (
         <Route path="/bb" element={<NotFoundPage />} />
       </Routes>
     </div>
-  </Router>
+  </Router> */
+  <NotFoundPage />
 );
 
 ReactDOM.render(<App />, document.querySelector('#chat'));
@@ -62,4 +63,4 @@ card.append(cardBody);
 const container = document.querySelector('#chat');
 container.append(card); */
 
-console.log('it works now!');
+console.log('it works now1!');
