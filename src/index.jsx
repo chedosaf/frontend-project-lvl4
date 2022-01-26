@@ -34,14 +34,14 @@ const App = () => (
           </li>
         </ul>
       </nav>
-      <Switch>
-        <Route path="/">
-          <SignupForm />
-        </Route>
-        <Route path="/bb">
-          <NotFoundPage />
-        </Route>
-      </Switch>
+
+      <Route path="/">
+        <SignupForm />
+      </Route>
+      <Route path="/bb">
+        <NotFoundPage />
+      </Route>
+
     </div>
   </Router>
 );
