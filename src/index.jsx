@@ -11,11 +11,10 @@ import {
   Route,
   Link,
 } from 'react-router-dom';
+import React from 'react';
 
-import SignupForm from './loginForm.jsx';
-import NotFoundPage from './notFoundpage.jsx';
-
-const React = require('react');
+import LoginPage from './loginPage.jsx';
+import NotFoundPage from './notFoundPage.jsx';
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
@@ -35,7 +34,7 @@ const App = () => (
         </ul>
       </nav>
       <Routes>
-        <Route path="/login" element={<SignupForm />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<NotFoundPage />} />
       </Routes>
     </div>

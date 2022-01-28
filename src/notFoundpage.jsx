@@ -1,5 +1,5 @@
 // @ts-check
-const React = require('react');
+import React from 'react';
 
 const NotFoundPage = () => (
   <div className="d-flex flex-column h-100">
