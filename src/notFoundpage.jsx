@@ -18,7 +18,7 @@ const NotFoundPage = () => (
       <p className="text-muted">
         Но вы можете перейти
         {' '}
-        <a href="/">на главную страницу</a>
+        <a href="/">на главную страницу!</a>
       </p>
     </div>
   </div>
