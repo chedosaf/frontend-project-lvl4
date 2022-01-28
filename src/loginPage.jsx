@@ -23,7 +23,7 @@ const LoginForm = () => {
   return (
     <form onSubmit={formik.handleSubmit} className="col-12 col-md-6 mt-3 mt-mb-0">
       <h1 className="text-center mb-4">Войти</h1>
-      <div className="form-floating mb-3 form-group">
+      <div className="form-group">
         <label htmlFor="userName">
           <input
             id="username"
@@ -38,7 +38,7 @@ const LoginForm = () => {
         </label>
       </div>
 
-      <div className="form-floating mb-4 form-group">
+      <div className="form-group">
         <label htmlFor="password">
           <input
             id="password"
