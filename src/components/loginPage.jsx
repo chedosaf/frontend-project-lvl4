@@ -1,8 +1,15 @@
 // @ts-check
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-
 import React from 'react';
+import useAuth from '../hooks/index.jsx';
+
+const DisplayingErrorMessagesSchema = yup.object({
+  userName: yup.string()
+    .max(15, 'Must be 15 characters or less')
+    .required('Required'),
+  password: yup.string().max(15, 'Must be 15 characters or less').required('Required'),
+});
 
 const LoginForm = () => {
   const formik = useFormik({
@@ -10,12 +17,7 @@ const LoginForm = () => {
       userName: '',
       password: '',
     },
-    validationSchema: yup.object({
-      userName: yup.string()
-        .max(15, 'Must be 15 characters or less')
-        .required('Required'),
-      email: yup.string().email('Invalid email address').required('Required'),
-    }),
+    validationSchema: { DisplayingErrorMessagesSchema },
     onSubmit: (values) => {
       console.log(values);
     },
@@ -29,7 +31,6 @@ const LoginForm = () => {
             id="username"
             name="username"
             autoComplete="username"
-            type="text"
             onChange={formik.handleChange}
             value={formik.values.userName}
             placeholder="User Name"
@@ -57,6 +58,7 @@ const LoginForm = () => {
     </form>
   );
 };
+
 const PictureDiv = () => (
   <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
     <img src="https://www.seekpng.com/png/full/356-3562377_personal-user.png" className="rounded-circle" alt="Войти" />

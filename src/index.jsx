@@ -2,45 +2,15 @@
 
 import 'core-js/stable/index.js';
 import 'regenerator-runtime/runtime.js';
-
 import '../assets/application.scss';
 import ReactDOM from 'react-dom';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-} from 'react-router-dom';
 import React from 'react';
+import App from './components/app.jsx'
 
-import LoginPage from './loginPage.jsx';
-import NotFoundPage from './notFoundPage.jsx';
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
-
-const App = () => (
-  <Router>
-    <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/login">Home</Link>
-          </li>
-          <li>
-            <Link to="/">NotFoundPage</Link>
-          </li>
-        </ul>
-      </nav>
-      <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/" element={<NotFoundPage />} />
-      </Routes>
-    </div>
-  </Router>
-
-);
 
 ReactDOM.render(<App />, document.querySelector('#chat'));
 /* const p = document.createElement('p');
