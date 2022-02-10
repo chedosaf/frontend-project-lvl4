@@ -1,84 +1,109 @@
 // @ts-check
 import { useFormik } from 'formik';
+import axios from 'axios';
 import * as yup from 'yup';
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import {
+  Button, Form, Container, Row, Col,
+} from 'react-bootstrap';
 import useAuth from '../hooks/index.jsx';
 
-const DisplayingErrorMessagesSchema = yup.object({
-  userName: yup.string()
+const DisplayingErrorMessagesSchema = yup.object().shape({
+  username: yup.string()
     .max(15, 'Must be 15 characters or less')
     .required('Required'),
   password: yup.string().max(15, 'Must be 15 characters or less').required('Required'),
 });
 
 const LoginForm = () => {
+  const auth = useAuth();
+  const inputRef = useRef();
+  const [authFailed, setAuthFailed] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (inputRef) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   const formik = useFormik({
     initialValues: {
-      userName: '',
+      username: '',
       password: '',
     },
-    validationSchema: { DisplayingErrorMessagesSchema },
-    onSubmit: (values) => {
-      console.log(values);
+    validationSchema: DisplayingErrorMessagesSchema,
+    onSubmit: async (values) => {
+      setAuthFailed(false);
+      try {
+        const res = await axios.post('/api/v1/login', values);
+        console.log(res.data);
+        auth.logIn();
+        localStorage.setItem('userId', JSON.stringify(res.data));
+        navigate('/');
+      } catch (err) {
+        localStorage.clear();
+        if (err.isAxiosError && err.response.status === 401) {
+          setAuthFailed(true);
+          inputRef.current.focus();
+          return;
+        }
+        throw err;
+      }
     },
   });
   return (
-    <form onSubmit={formik.handleSubmit} className="col-12 col-md-6 mt-3 mt-mb-0">
-      <h1 className="text-center mb-4">Войти</h1>
-      <div className="form-group">
-        <label htmlFor="userName">
-          <input
-            id="username"
-            name="username"
-            autoComplete="username"
-            onChange={formik.handleChange}
-            value={formik.values.userName}
-            placeholder="User Name"
-            className="form-control"
-          />
-        </label>
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="password">
-          <input
-            id="password"
-            name="password"
-            autoComplete="current-password"
-            type="password"
-            onChange={formik.handleChange}
-            value={formik.values.password}
-            placeholder="Password"
-            className="form-control"
-          />
-        </label>
-      </div>
-
-      <button type="submit" className="w-100 mb-3 btn btn-outline-primary">Submit</button>
-    </form>
+    <Form onSubmit={formik.handleSubmit} className="mt-3 mt-mb-0">
+      <Form.Group>
+        <Form.Label htmlFor="userName" />
+        <Form.Control
+          id="username"
+          name="username"
+          autoComplete="username"
+          onChange={formik.handleChange}
+          value={formik.values.username}
+          placeholder="User Name"
+          className="form-control"
+          isInvalid={authFailed}
+          ref={inputRef}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label htmlFor="password" />
+        <Form.Control
+          id="password"
+          name="password"
+          autoComplete="current-password"
+          type="password"
+          onChange={formik.handleChange}
+          value={formik.values.password}
+          isInvalid={authFailed}
+          placeholder="Password"
+          className="form-control"
+        />
+        <Form.Control.Feedback type="invalid">the username or password is incorrect</Form.Control.Feedback>
+      </Form.Group>
+      <Button type="submit" className="w-100 mt-3 outline-primary justify-content-center">Submit</Button>
+    </Form>
   );
 };
 
 const PictureDiv = () => (
-  <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
+  <div className=" d-flex justify-content-center">
     <img src="https://www.seekpng.com/png/full/356-3562377_personal-user.png" className="rounded-circle" alt="Войти" />
   </div>
 );
 
-const NavBar = () => (
-  <nav className="shadow-sm navbar navbar-expand-lg navbar-light bg-white">
-    <div className="container">
-      <a className="navbar-brand" href="/">Hexlet Chat</a>
-    </div>
-  </nav>
-);
-
 const LoginPage = () => (
-  <>
-    <NavBar />
-    <PictureDiv />
-    <LoginForm />
-  </>
+  <Container>
+    <Row className="justify-content-center">
+      <Col md={8}>
+        <PictureDiv />
+        <LoginForm />
+      </Col>
+    </Row>
+  </Container>
 );
 
 export default LoginPage;
