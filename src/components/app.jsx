@@ -22,10 +22,11 @@ if (process.env.NODE_ENV !== 'production') {
 
 const PrivateRoute = ({ children }) => {
   const auth = useAuth();
+  console.log(auth.loggedIn);
 
   return (
-    auth.loggedIn
-      ? children
+   auth.loggedIn ? 
+      children
       : <Navigate to="/login" />
   );
 };
@@ -33,7 +34,7 @@ const PrivateRoute = ({ children }) => {
 const App = () => (
   <AuthProvider>
     <Provider store={store}>
-      <Container fluid>
+      <Container fluid style={{ height: '100vh' }}>
         <NavBar />
         <Router>
           <Routes>

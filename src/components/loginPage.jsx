@@ -35,10 +35,9 @@ const LoginForm = () => {
     },
     validationSchema: DisplayingErrorMessagesSchema,
     onSubmit: async (values) => {
-      setAuthFailed(false);
       try {
         const res = await axios.post('/api/v1/login', values);
-        console.log(res.data);
+        console.log(values);
         auth.logIn();
         localStorage.setItem('userId', JSON.stringify(res.data));
         navigate('/');
@@ -54,7 +53,7 @@ const LoginForm = () => {
     },
   });
   return (
-    <Form onSubmit={formik.handleSubmit} className="mt-3 mt-mb-0">
+    <Form noValidate onSubmit={formik.handleSubmit} className="mt-3 mt-mb-0">
       <Form.Group>
         <Form.Label htmlFor="userName" />
         <Form.Control
@@ -65,9 +64,12 @@ const LoginForm = () => {
           value={formik.values.username}
           placeholder="User Name"
           className="form-control"
-          isInvalid={authFailed}
+          isInvalid={authFailed || !!formik.errors.username}
           ref={inputRef}
         />
+        {formik.errors.username
+          ? <div className="invalid-feedback">{formik.errors.username}</div>
+          : null}
       </Form.Group>
       <Form.Group>
         <Form.Label htmlFor="password" />
@@ -78,11 +80,13 @@ const LoginForm = () => {
           type="password"
           onChange={formik.handleChange}
           value={formik.values.password}
-          isInvalid={authFailed}
+          isInvalid={authFailed || !!formik.errors.password}
           placeholder="Password"
           className="form-control"
         />
-        <Form.Control.Feedback type="invalid">the username or password is incorrect</Form.Control.Feedback>
+        {formik.errors.password
+          ? <div className="invalid-feedback">{formik.errors.password}</div>
+          : null}
       </Form.Group>
       <Button type="submit" className="w-100 mt-3 outline-primary justify-content-center">Submit</Button>
     </Form>
