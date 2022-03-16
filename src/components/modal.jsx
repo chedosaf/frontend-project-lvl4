@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useFormik } from 'formik';
 import io from 'socket.io-client';
 import * as yup from 'yup';
@@ -11,7 +11,7 @@ const ModalWindow = (props) => {
   const { show } = props;
   const { modalClose } = props;
   const socket = io();
-
+  const inputRef = useRef();
   const storeChannels = useSelector((state) => state.channels.channels);
   const storeChannelsNames = storeChannels.map((channel) => channel.name);
 

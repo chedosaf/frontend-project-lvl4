@@ -25,8 +25,7 @@ const PrivateRoute = ({ children }) => {
   console.log(auth.loggedIn);
 
   return (
-   auth.loggedIn ? 
-      children
+    auth.loggedIn ? children
       : <Navigate to="/login" />
   );
 };

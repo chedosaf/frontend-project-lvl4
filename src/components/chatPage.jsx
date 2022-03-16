@@ -34,10 +34,12 @@ const Chat = () => {
       const { channels } = data;
       const { messages } = data;
       const { currentChannelId } = data;
+      console.log(messages);
+      console.log(channels);
+      console.log(currentChannelId);
       dispatch(addChannels(channels));
       dispatch(updateMessages(messages));
       dispatch(setCurrentChannelId(currentChannelId));
-      console.log(channels);
     };
 
     fetchContent();

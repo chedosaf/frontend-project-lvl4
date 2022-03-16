@@ -37,7 +37,6 @@ const LoginForm = () => {
     onSubmit: async (values) => {
       try {
         const res = await axios.post('/api/v1/login', values);
-        console.log(values);
         auth.logIn();
         localStorage.setItem('userId', JSON.stringify(res.data));
         navigate('/');
