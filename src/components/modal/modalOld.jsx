@@ -5,13 +5,14 @@ import * as yup from 'yup';
 import {
   Button, Modal, Form, Container,
 } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCurrentChannelId } from '../../slices/channelsSlice.js';
 
 const ModalWindow = (props) => {
   const { show } = props;
   const { modalClose } = props;
   const socket = io();
-  const inputRef = useRef();
+  const dispatch = useDispatch();
   const storeChannels = useSelector((state) => state.channels.channels);
   const storeChannelsNames = storeChannels.map((channel) => channel.name);
 
@@ -27,7 +28,9 @@ const ModalWindow = (props) => {
     },
     validationSchema: DisplayingErrorMessagesSchema,
     onSubmit: (values) => {
-      socket.emit('newChannel', { name: values.newchannelname });
+      socket.emit('newChannel', { name: values.newchannelname }, (response) => {
+        dispatch(setCurrentChannelId(response.data.id));
+      });
       formik.resetForm();
       modalClose();
     },

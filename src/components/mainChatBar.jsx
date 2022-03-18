@@ -11,7 +11,7 @@ const MainChatBar = () => {
   const inputRef = useRef();
   const [message, setMessage] = useState('');
   const storeMessages = useSelector((state) => state.channels.messages);
-  const curChat = useSelector((state) => state.channels.currentChannelId);
+  const curChennel = useSelector((state) => state.channels.currentChannelId);
   const activeChannel = useSelector((state) => {
     const channel = state
       .channels.channels.filter((el) => el.id === state.channels.currentChannelId)[0];
@@ -27,10 +27,12 @@ const MainChatBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const btn = document.querySelector('button[type="submit"]');
+    btn.setAttribute('disabled', 'true');
     const userId = JSON.parse(localStorage.getItem('userId'));
-    socket.emit('newMessage', { message, auth: userId.username, chatId: curChat }, (response) => {
-      if (response.status !== 'ok') {
-        console.log('Сообщение не отправлено'); // подумать над интерфейсом
+    socket.emit('newMessage', { message, auth: userId.username, chatId: curChennel }, (response) => {
+      if (response.status === 'ok') {
+        btn.removeAttribute('disabled');
       }
     });
     setMessage('');
@@ -53,13 +55,13 @@ const MainChatBar = () => {
             </b>
           </p>
           <span className="text-muted">
-            {storeMessages.filter((el) => el.chatId === curChat).length.toString()}
+            {storeMessages.filter((el) => el.chatId === curChennel).length.toString()}
             {' '}
             сообщений
           </span>
         </Container>
         <Container id="messages-box" className="chat-messages overflow-auto px-5 ">
-          {storeMessages.filter((el) => el.chatId === curChat)
+          {storeMessages.filter((el) => el.chatId === curChennel)
             .map((el) => <Message key={el.id} user={el.auth} message={el.message} />)}
         </Container>
         <Container className="mt-auto px-5 py-3">
