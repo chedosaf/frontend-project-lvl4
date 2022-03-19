@@ -3,21 +3,16 @@ import {
   Modal, FormGroup, Container, Button,
 } from 'react-bootstrap';
 import io from 'socket.io-client';
-import { useDispatch } from 'react-redux';
-import { setCurrentChannelId } from '../../slices/channelsSlice.js';
 
 const socket = io();
 
 const Remove = (props) => {
   const { onHide } = props;
-  const dispatch = useDispatch();
 
   const generateOnSubmit = ({ modalInfo }) => (e) => {
     e.preventDefault();
     const { item } = modalInfo;
-    socket.emit('removeChannel', { id: item.id }, () => {
-      dispatch(setCurrentChannelId(1));
-    });
+    socket.emit('removeChannel', { id: item.id });
     onHide();
   };
   const onSubmit = generateOnSubmit(props);

@@ -4,10 +4,9 @@ import {
   Col, Row, Container,
 } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import io from 'socket.io-client';
 import {
   addChannels, setCurrentChannelId,
-  updateMessages, addMessage, addChannel, removeChannel, renameChannel,
+  updateMessages,
 } from '../slices/channelsSlice.js';
 import ChannelsBar from './channelsBar.jsx';
 import MainChatBar from './mainChatBar.jsx';
@@ -22,7 +21,6 @@ const getAuthHeader = () => {
 };
 
 const Chat = () => {
-  const socket = io();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,43 +29,12 @@ const Chat = () => {
       const { channels } = data;
       const { messages } = data;
       const { currentChannelId } = data;
-      console.log(channels);
       dispatch(addChannels(channels));
       dispatch(updateMessages(messages));
       dispatch(setCurrentChannelId(currentChannelId));
     };
 
     fetchContent();
-  }, []);
-
-  useEffect(() => {
-    socket.on('connect', () => {
-      console.log(socket.connected);
-    });
-  }, []);
-
-  useEffect(() => {
-    socket.on('newMessage', (message) => {
-      dispatch(addMessage(message));
-    });
-  }, []);
-
-  useEffect(() => {
-    socket.on('newChannel', (channel) => {
-      dispatch(addChannel(channel));
-    });
-  }, []);
-
-  useEffect(() => {
-    socket.on('removeChannel', (channel) => {
-      dispatch(removeChannel(channel));
-    });
-  }, []);
-
-  useEffect(() => {
-    socket.on('renameChannel', (channel) => {
-      dispatch(renameChannel(channel));
-    });
   }, []);
 
   const renderModal = ({ modalInfo, hideModal, setItems }) => {

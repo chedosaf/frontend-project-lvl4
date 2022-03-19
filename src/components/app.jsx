@@ -5,7 +5,6 @@ import {
   Navigate,
 
 } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
 import React from 'react';
 import { Provider } from 'react-redux';
 import NavBar from './navBar.jsx';
@@ -15,6 +14,7 @@ import LoginPage from './loginPage.jsx';
 import NotFoundPage from './notFoundPage.jsx';
 import Chat from './chatPage.jsx';
 import store from '../slices/index.js';
+import Listener from './soketContainer.jsx';
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
@@ -31,9 +31,10 @@ const PrivateRoute = ({ children }) => {
 };
 
 const App = () => (
+
   <AuthProvider>
     <Provider store={store}>
-      <Container fluid style={{ height: '100vh' }}>
+      <Listener fluid style={{ height: '100vh' }}>
         <NavBar />
         <Router>
           <Routes>
@@ -50,7 +51,7 @@ const App = () => (
             <Route path="*" element={<Navigate to="/not-found-404" />} />
           </Routes>
         </Router>
-      </Container>
+      </Listener>
     </Provider>
   </AuthProvider>
 );

@@ -33,6 +33,9 @@ const MainChatBar = () => {
     socket.emit('newMessage', { message, auth: userId.username, chatId: curChennel }, (response) => {
       if (response.status === 'ok') {
         btn.removeAttribute('disabled');
+      } else {
+        btn.removeAttribute('disabled');
+        throw Error('сообщение не отправлено');
       }
     });
     setMessage('');

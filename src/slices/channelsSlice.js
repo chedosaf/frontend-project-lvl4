@@ -22,8 +22,13 @@ export const channelsSlice = createSlice({
       state.channels = state.channels.filter((el) => el.id !== action.payload.id);
     },
     renameChannel: (state, action) => {
-      state.channels = [...state.channels
-        .filter((el) => el.id !== action.payload.id), action.payload];
+      state.channels = state.channels
+        .map((el) => {
+          if (el.id === action.payload.id) {
+            return action.payload;
+          }
+          return el;
+        });
     },
     addMessage: (state, action) => {
       state.messages = [...state.messages, action.payload];
