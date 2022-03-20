@@ -7,26 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import {
   Button, Form, Container, Row, Col, Card,
 } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import useAuth from '../hooks/index.jsx';
-
-const DisplayingErrorMessagesSchema = yup.object().shape({
-  username: yup.string()
-    .min(3, 'Ник должен состоять более чем из 3х символов')
-    .max(20, 'Ник не должен привышать 20 символов')
-    .required('Обязательное поле'),
-  password: yup.string().min(6, 'Пароль должен состоять более чем из 6 символов').required('Обязательное поле'),
-  confirmPassword: yup.string().when('password', {
-    is: (val) => (!!(val && val.length > 0)),
-    then: yup.string().oneOf(
-      [yup.ref('password')],
-      'Пароли должны совпадать',
-    ),
-  }),
-});
 
 const LoginForm = () => {
   const auth = useAuth();
   const inputRef = useRef();
+  const { t } = useTranslation();
   const [authFailed, setAuthFailed] = useState(false);
   const navigate = useNavigate();
 
@@ -35,6 +22,21 @@ const LoginForm = () => {
       inputRef.current.focus();
     }
   }, []);
+
+  const DisplayingErrorMessagesSchema = yup.object().shape({
+    username: yup.string()
+      .min(3, t('validationErrors.min'))
+      .max(20, t('validationErrors.max'))
+      .required(t('validationErrors.required')),
+    password: yup.string().min(6, t('validationErrors.minPassword')).required(t('validationErrors.required')),
+    confirmPassword: yup.string().when('password', {
+      is: (val) => (!!(val && val.length > 0)),
+      then: yup.string().oneOf(
+        [yup.ref('password')],
+        t('validationErrors.matchPassword'),
+      ),
+    }),
+  });
 
   const formik = useFormik({
     initialValues: {
@@ -75,7 +77,7 @@ const LoginForm = () => {
           autoComplete="username"
           onChange={formik.handleChange}
           value={formik.values.username}
-          placeholder="Ник"
+          placeholder={t('registration.userName')}
           className="form-control"
           isInvalid={authFailed || !!formik.errors.username}
           ref={inputRef}
@@ -94,7 +96,7 @@ const LoginForm = () => {
           onChange={formik.handleChange}
           value={formik.values.password}
           isInvalid={authFailed || !!formik.errors.password}
-          placeholder="Пароль"
+          placeholder={t('registration.password')}
           className="form-control"
         />
         {formik.errors.password
@@ -111,34 +113,37 @@ const LoginForm = () => {
           onChange={formik.handleChange}
           value={formik.values.confirmPassword}
           isInvalid={authFailed || !!formik.errors.confirmPassword}
-          placeholder="Подтвердите пароль"
+          placeholder={t('registration.passwordConferm')}
           className="form-control"
         />
         {formik.errors.confirmPassword
           ? <div className="invalid-feedback">{formik.errors.confirmPassword}</div>
           : null}
       </Form.Group>
-      <Button type="submit" className="w-100 mt-3 outline-primary justify-content-center">Регистрация</Button>
+      <Button type="submit" className="w-100 mt-3 outline-primary justify-content-center">{t('registration.signUp')}</Button>
     </Form>
   );
 };
 
-const SignPage = () => (
-  <Container fluid>
-    <Row className="justify-content-center aligh-content-center">
-      <Col xxl={5} md={6} sm={10} xs={12}>
-        <Card className="shadow-sm text-center">
-          <Container fluid>
-            <Card.Img variant="top" src="https://icons.veryicon.com/png/o/miscellaneous/esgcc-basic-icon-library/register-14.png" className="rounded-circle" alt="Войти" />
-          </Container>
-          <Card.Body>
-            <Card.Title>Регистрация</Card.Title>
-            <LoginForm />
-          </Card.Body>
-        </Card>
-      </Col>
-    </Row>
-  </Container>
-);
+const SignPage = () => {
+  const { t } = useTranslation();
+  return (
+    <Container fluid>
+      <Row className="justify-content-center aligh-content-center">
+        <Col xxl={5} md={6} sm={10} xs={12}>
+          <Card className="shadow-sm text-center">
+            <Container fluid>
+              <Card.Img variant="top" src="https://icons.veryicon.com/png/o/miscellaneous/esgcc-basic-icon-library/register-14.png" className="rounded-circle" alt="Войти" />
+            </Container>
+            <Card.Body>
+              <Card.Title>{t('registration.signUp')}</Card.Title>
+              <LoginForm />
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
 export default SignPage;

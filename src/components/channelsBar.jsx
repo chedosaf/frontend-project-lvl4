@@ -5,11 +5,13 @@ import {
 } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import cn from 'classnames';
+import { useTranslation } from 'react-i18next';
 import { setCurrentChannelId } from '../slices/channelsSlice.js';
 import getters from './gettorsForUseSelector.js';
 
 const ChannelsBar = (props) => {
   const { showModal } = props;
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const storeChannels = useSelector(getters.getChannels);
   const activeChannel = useSelector(getters.getCurrentChannelId);
@@ -20,7 +22,7 @@ const ChannelsBar = (props) => {
   return (
     <>
       <Container className="d-flex justify-content-between mb-2 ps-4 pe-2">
-        <span>Каналы</span>
+        <span>{t('channels')}</span>
         <Button type="button" className="p-0 ml-1 btn btn-group-vertical" onClick={() => showModal('adding')}>
         &nbsp;&nbsp;+&nbsp;&nbsp;
         </Button>
@@ -48,8 +50,8 @@ const ChannelsBar = (props) => {
                 <Dropdown>
                   <Dropdown.Toggle variant="" id="dropdown-basic" />
                   <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1" onClick={() => showModal('removing', item)}>Удалить</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2" onClick={() => showModal('renaming', item)}>Переименовать</Dropdown.Item>
+                    <Dropdown.Item href="#/action-1" onClick={() => showModal('removing', item)}>{t('delete')}</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2" onClick={() => showModal('renaming', item)}>{t('rename')}</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </Container>

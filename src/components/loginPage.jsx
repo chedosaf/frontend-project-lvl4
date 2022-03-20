@@ -7,16 +7,11 @@ import { useNavigate, Link } from 'react-router-dom';
 import {
   Button, Form, Container, Row, Col, Card,
 } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import useAuth from '../hooks/index.jsx';
 
-const DisplayingErrorMessagesSchema = yup.object().shape({
-  username: yup.string()
-    .max(15, 'Ник не должен привышать 15 символов')
-    .required('Обязательное поле'),
-  password: yup.string().max(15, 'Пароль не должен привышать 15 символов').required('Обязательное поле'),
-});
-
 const LoginForm = () => {
+  const { t } = useTranslation();
   const auth = useAuth();
   const inputRef = useRef();
   const [authFailed, setAuthFailed] = useState(false);
@@ -27,6 +22,12 @@ const LoginForm = () => {
       inputRef.current.focus();
     }
   }, []);
+
+  const DisplayingErrorMessagesSchema = yup.object().shape({
+    username: yup.string()
+      .required(t('validationErrors.required')),
+    password: yup.string().required(t('validationErrors.required')),
+  });
 
   const formik = useFormik({
     initialValues: {
@@ -61,7 +62,7 @@ const LoginForm = () => {
           autoComplete="username"
           onChange={formik.handleChange}
           value={formik.values.username}
-          placeholder="Ваш ник"
+          placeholder={t('registration.userName')}
           className="form-control"
           isInvalid={authFailed || !!formik.errors.username}
           ref={inputRef}
@@ -80,41 +81,44 @@ const LoginForm = () => {
           onChange={formik.handleChange}
           value={formik.values.password}
           isInvalid={authFailed || !!formik.errors.password}
-          placeholder="Пароль"
+          placeholder={t('registration.password')}
           className="form-control"
         />
         {formik.errors.password
           ? <div className="invalid-feedback">{formik.errors.password}</div>
           : null}
       </Form.Group>
-      <Button type="submit" className="w-100 mt-3 outline-primary justify-content-center">Войти</Button>
+      <Button type="submit" className="w-100 mt-3 outline-primary justify-content-center">{t('registration.entrance')}</Button>
     </Form>
   );
 };
 
-const LoginPage = () => (
-  <Container fluid>
-    <Row className="justify-content-center aligh-content-center">
-      <Col xxl={5} md={6} sm={10} xs={12}>
-        <Card className="shadow-sm text-center">
-          <Container fluid>
-            <Card.Img variant="top" src="https://www.seekpng.com/png/full/356-3562377_personal-user.png" className="rounded-circle" alt="Войти" />
-          </Container>
-          <Card.Body>
-            <Card.Title>Войти</Card.Title>
-            <LoginForm />
-          </Card.Body>
-          <Card.Footer>
-            <div>
-              Нет аккаунта?
-              {' '}
-              <Link to="/signup">Регистрация</Link>
-            </div>
-          </Card.Footer>
-        </Card>
-      </Col>
-    </Row>
-  </Container>
-);
+const LoginPage = () => {
+  const { t } = useTranslation();
+  return (
+    <Container fluid>
+      <Row className="justify-content-center aligh-content-center">
+        <Col xxl={5} md={6} sm={10} xs={12}>
+          <Card className="shadow-sm text-center">
+            <Container fluid>
+              <Card.Img variant="top" src="https://www.seekpng.com/png/full/356-3562377_personal-user.png" className="rounded-circle" alt="Войти" />
+            </Container>
+            <Card.Body>
+              <Card.Title>{t('registration.entrance')}</Card.Title>
+              <LoginForm />
+            </Card.Body>
+            <Card.Footer>
+              <div>
+                {t('registration.noAccaunt')}
+                {' '}
+                <Link to="/signup">{t('registration.signUp')}</Link>
+              </div>
+            </Card.Footer>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
 export default LoginPage;
