@@ -1,5 +1,7 @@
+// @ts-check
 import React from 'react';
 import { Button, Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import useAuth from '../hooks/index.jsx';
 
 const NavBar = () => {
@@ -11,7 +13,7 @@ const NavBar = () => {
   return (
     <Nav className="shadow-sm navbar navbar-expand-lg navbar-light bg-white justify-content-between px-2">
       <Nav.Item as="li">
-        <a className="navbar-brand" href="/">Hexlet Chat</a>
+        <Link className="navbar-brand" to="/">Hexlet Chat</Link>
       </Nav.Item>
       {!auth.loggedIn ? null
         : (

@@ -1,3 +1,4 @@
+// @ts-check
 import React, { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 import io from 'socket.io-client';
@@ -30,7 +31,7 @@ const Listener = ({ children }) => {
   }, []);
 
   return (
-    <Container>
+    <Container fluid style={{ height: '100vh' }}>
       {children}
     </Container>
   );

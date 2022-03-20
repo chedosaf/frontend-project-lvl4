@@ -1,3 +1,4 @@
+// @ts-check
 import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
@@ -6,10 +7,11 @@ import {
 } from 'react-bootstrap';
 import io from 'socket.io-client';
 import * as yup from 'yup';
+import getters from '../gettorsForUseSelector.js';
 
 const Rename = (props) => {
   const socket = io();
-  const storeChannels = useSelector((state) => state.channels.channels);
+  const storeChannels = useSelector(getters.getChannels);
   const storeChannelsNames = storeChannels.map((channel) => channel.name);
   const { modalInfo } = props;
   const { item } = modalInfo;
@@ -70,7 +72,7 @@ const Rename = (props) => {
                 Отмена
               </Button>
 
-              <Button variant="primary" type="submit reset">
+              <Button variant="primary" type="submit">
                 Отправить
               </Button>
 

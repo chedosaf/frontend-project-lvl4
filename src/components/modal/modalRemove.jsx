@@ -1,3 +1,4 @@
+// @ts-check
 import React from 'react';
 import {
   Modal, FormGroup, Container, Button,
@@ -38,7 +39,7 @@ const Remove = (props) => {
                 Отмена
               </Button>
 
-              <Button variant="danger" type="submit reset">
+              <Button variant="danger" type="submit">
                 Удалить
               </Button>
 

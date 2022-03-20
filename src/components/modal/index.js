@@ -1,3 +1,4 @@
+// @ts-check
 import Add from './modalAdd.jsx';
 import Remove from './modalRemove.jsx';
 import Rename from './modalRename.jsx';

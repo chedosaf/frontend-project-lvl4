@@ -1,3 +1,4 @@
+// @ts-check
 import React from 'react';
 import {
   Container, ListGroup, Dropdown, Button,
@@ -5,20 +6,20 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import cn from 'classnames';
 import { setCurrentChannelId } from '../slices/channelsSlice.js';
+import getters from './gettorsForUseSelector.js';
 
 const ChannelsBar = (props) => {
-  const dispatch = useDispatch();
-  const storeChannels = useSelector((state) => state.channels.channels);
   const { showModal } = props;
-
-  const activeChannel = useSelector((state) => state.channels.currentChannelId);
+  const dispatch = useDispatch();
+  const storeChannels = useSelector(getters.getChannels);
+  const activeChannel = useSelector(getters.getCurrentChannelId);
   const makeActive = (id) => {
     dispatch(setCurrentChannelId(id));
   };
 
   return (
     <>
-      <Container md={2} className="d-flex justify-content-between mb-2 ps-4 pe-2">
+      <Container className="d-flex justify-content-between mb-2 ps-4 pe-2">
         <span>Каналы</span>
         <Button type="button" className="p-0 ml-1 btn btn-group-vertical" onClick={() => showModal('adding')}>
         &nbsp;&nbsp;+&nbsp;&nbsp;

@@ -1,3 +1,4 @@
+// @ts-check
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
@@ -37,13 +38,13 @@ const Chat = () => {
     fetchContent();
   }, []);
 
-  const renderModal = ({ modalInfo, hideModal, setItems }) => {
+  const renderModal = ({ modalInfo, hideModal }) => {
     if (!modalInfo.type) {
       return null;
     }
 
     const Component = getModal(modalInfo.type);
-    return <Component modalInfo={modalInfo} setItems={setItems} onHide={hideModal} />;
+    return <Component modalInfo={modalInfo} onHide={hideModal} />;
   };
 
   const [modalInfo, setModalInfo] = useState({ type: null, item: null });
