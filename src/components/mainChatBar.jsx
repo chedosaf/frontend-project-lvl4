@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import {
   Col, Container, Button, Form,
 } from 'react-bootstrap';
+import filter from 'leo-profanity';
 import { useTranslation } from 'react-i18next';
 import Message from './message.jsx';
 import getters from './gettorsForUseSelector.js';
@@ -12,6 +13,7 @@ import getters from './gettorsForUseSelector.js';
 const MainChatBar = () => {
   const socket = io();
   const { t } = useTranslation();
+  filter.loadDictionary(t('locale'));
   const inputRef = useRef();
   const [message, setMessage] = useState('');
   const storeMessages = useSelector(getters.getMessages);
@@ -19,7 +21,8 @@ const MainChatBar = () => {
   const activeChannel = useSelector(getters.getActiveChannel);
 
   const messageChange = ({ target }) => {
-    setMessage(target.value);
+    const filtredMessage = filter.clean(target.value);
+    setMessage(filtredMessage);
   };
 
   const messagesCount = storeMessages.filter((el) => el.chatId === curChennel).length.toString();

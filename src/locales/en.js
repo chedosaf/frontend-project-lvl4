@@ -22,6 +22,7 @@ export default {
       updateChannellFailer: 'Channel add failer!',
       fetchDataFailer: 'Ops, something went wrong!',
     },
+    locale: 'en',
     logOut: 'Log out',
     enterMessage: 'Enter message...',
     send: 'Send',

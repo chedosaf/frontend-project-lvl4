@@ -23,6 +23,7 @@ export default {
       updateChannellFailer: 'Канал не добавлен!',
       fetchDataFailer: 'Что-то пошло не так!',
     },
+    locale: 'ru',
     logOut: 'Выйти',
     enterMessage: 'Введите сообщение...',
     send: 'Отправить',
