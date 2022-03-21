@@ -10,5 +10,5 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 ReactDOM.render(
-  React.createElement(AppFinal), document.querySelector('#chat'),
+  (React.createElement(AppFinal)), document.querySelector('#chat'),
 );
