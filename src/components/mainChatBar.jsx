@@ -21,8 +21,8 @@ const MainChatBar = () => {
   const activeChannel = useSelector(getters.getActiveChannel);
 
   const messageChange = ({ target }) => {
-    const filtredMessage = filter.clean(target.value);
-    setMessage(filtredMessage);
+    const filteredMessage = filter.clean(target.value);
+    setMessage(filteredMessage);
   };
 
   const messagesCount = storeMessages.filter((el) => el.chatId === curChennel).length.toString();
