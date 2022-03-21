@@ -9,11 +9,13 @@ const socket = io();
 
 const Remove = (props) => {
   const { onHide } = props;
+  const { notify } = props;
 
   const generateOnSubmit = ({ modalInfo }) => (e) => {
     e.preventDefault();
     const { item } = modalInfo;
     socket.emit('removeChannel', { id: item.id });
+    notify.removeChannellSuccess();
     onHide();
   };
   const onSubmit = generateOnSubmit(props);

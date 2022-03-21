@@ -11,6 +11,7 @@ import getters from '../gettorsForUseSelector.js';
 
 const Add = (props) => {
   const socket = io();
+  const { notify } = props;
   const storeChannels = useSelector(getters.getChannels);
   const storeChannelsNames = storeChannels.map((channel) => channel.name);
 
@@ -26,9 +27,10 @@ const Add = (props) => {
     socket.emit('newChannel', { name: values.newchannelname }, (response) => {
       if (response.status === 'ok') {
         btn.removeAttribute('disabled');
+        notify.addChannellSuccess();
       } else {
         btn.removeAttribute('disabled');
-        throw Error('канал не создан');
+        notify.showChannellFailer();
       }
     });
     onHide();

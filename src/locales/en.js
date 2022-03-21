@@ -15,6 +15,13 @@ export default {
       minPassword: 'Password must be more than 6 characters',
       matchPassword: 'Passwords must match',
     },
+    notify: {
+      addChannellSuccess: 'Сhannel created successfully',
+      renameChannellSuccess: 'Сhannel renamed successfully',
+      removeChannellSuccess: 'Сhannel deleted successfully',
+      updateChannellFailer: 'Channel add failer!',
+      fetchDataFailer: 'Ops, something went wrong!',
+    },
     logOut: 'Log out',
     enterMessage: 'Enter message...',
     send: 'Send',

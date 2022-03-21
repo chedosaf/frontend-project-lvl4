@@ -21,18 +21,22 @@ const getAuthHeader = () => {
   return {};
 };
 
-const Chat = () => {
+const Chat = (props) => {
   const dispatch = useDispatch();
-
+  const { notify } = props;
   useEffect(() => {
     const fetchContent = async () => {
-      const { data } = await axios.get('/api/v1/data', { headers: getAuthHeader() });
-      const { channels } = data;
-      const { messages } = data;
-      const { currentChannelId } = data;
-      dispatch(addChannels(channels));
-      dispatch(updateMessages(messages));
-      dispatch(setCurrentChannelId(currentChannelId));
+      try {
+        const { data } = await axios.get('/api/v1/data', { headers: getAuthHeader() });
+        const { channels } = data;
+        const { messages } = data;
+        const { currentChannelId } = data;
+        dispatch(addChannels(channels));
+        dispatch(updateMessages(messages));
+        dispatch(setCurrentChannelId(currentChannelId));
+      } catch {
+        notify.fetchDataFailer();
+      }
     };
 
     fetchContent();
@@ -44,7 +48,7 @@ const Chat = () => {
     }
 
     const Component = getModal(modalInfo.type);
-    return <Component modalInfo={modalInfo} onHide={hideModal} />;
+    return <Component modalInfo={modalInfo} onHide={hideModal} notify={notify} />;
   };
 
   const [modalInfo, setModalInfo] = useState({ type: null, item: null });

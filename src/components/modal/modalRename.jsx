@@ -11,6 +11,7 @@ import getters from '../gettorsForUseSelector.js';
 
 const Rename = (props) => {
   const socket = io();
+  const { notify } = props;
   const storeChannels = useSelector(getters.getChannels);
   const storeChannelsNames = storeChannels.map((channel) => channel.name);
   const { modalInfo } = props;
@@ -23,6 +24,7 @@ const Rename = (props) => {
 
   const generateOnSubmit = ({ onHide }) => (values) => {
     socket.emit('renameChannel', { id: item.id, name: values.newchannelname });
+    notify.renameChannellSuccess();
     onHide();
   };
 
