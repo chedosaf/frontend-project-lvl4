@@ -25,7 +25,7 @@ const MainChatBar = () => {
     setMessage(filteredMessage);
   };
 
-  const messagesCount = storeMessages.filter((el) => el.chatId === curChennel).length.toString();
+  const currentMessages = storeMessages.filter((el) => el.chatId === curChennel);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -60,12 +60,11 @@ const MainChatBar = () => {
             </b>
           </p>
           <span className="text-muted">
-            {t('message', { count: +messagesCount })}
+            {t('message', { count: currentMessages.length })}
           </span>
         </Container>
         <Container id="messages-box" className="chat-messages overflow-auto px-5 ">
-          {storeMessages.filter((el) => el.chatId === curChennel)
-            .map((el) => <Message key={el.id} user={el.auth} message={el.message} />)}
+          {currentMessages.map((el) => <Message key={el.id} user={el.auth} message={el.message} />)}
         </Container>
         <Container className="mt-auto px-5 py-3">
           <Form noValidate={false} className="form-inline border rounded-2" onSubmit={handleSubmit}>

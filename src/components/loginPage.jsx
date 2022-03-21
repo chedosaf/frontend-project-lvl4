@@ -45,6 +45,7 @@ const LoginForm = () => {
         localStorage.clear();
         if (err.isAxiosError && err.response.status === 401) {
           setAuthFailed(true);
+          formik.errors.password = t('registration.loginFailure');
           inputRef.current.focus();
           return;
         }
@@ -62,7 +63,7 @@ const LoginForm = () => {
           autoComplete="username"
           onChange={formik.handleChange}
           value={formik.values.username}
-          placeholder={t('registration.userName')}
+          placeholder={t('registration.userNick')}
           className="form-control"
           isInvalid={authFailed || !!formik.errors.username}
           ref={inputRef}

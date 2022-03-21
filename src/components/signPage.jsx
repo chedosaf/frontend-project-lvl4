@@ -54,7 +54,7 @@ const LoginForm = () => {
       } catch (err) {
         localStorage.clear();
         if (err.response.status === 409) {
-          formik.errors.confirmPassword = 'Имя пользователя занято';
+          formik.errors.confirmPassword = t('registration.nickNameBusy');
           setAuthFailed(true);
           inputRef.current.focus();
           return;
@@ -120,7 +120,7 @@ const LoginForm = () => {
           ? <div className="invalid-feedback">{formik.errors.confirmPassword}</div>
           : null}
       </Form.Group>
-      <Button type="submit" className="w-100 mt-3 outline-primary justify-content-center">{t('registration.signUp')}</Button>
+      <Button type="submit" className="w-100 mt-3 outline-primary justify-content-center">{t('registration.signUpBtn')}</Button>
     </Form>
   );
 };

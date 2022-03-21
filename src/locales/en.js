@@ -2,11 +2,15 @@ export default {
   translation: {
     registration: {
       entrance: 'Log in',
+      userNick: 'Nickname',
       userName: 'User name',
       password: 'Password',
       noAccaunt: 'Don\'t have an account?',
       signUp: 'Sign up',
+      signUpBtn: 'Sign up',
       passwordConferm: 'Confirm password',
+      loginFailure: 'Wrong nickname or password',
+      nickNameBusy: 'This user already exists',
     },
     validationErrors: {
       min: 'Username must be more than 3 characters',
@@ -29,8 +33,7 @@ export default {
     channels: 'Channels',
     delete: 'Delete',
     rename: 'Rename',
-    message_one: '{{count}} message',
-    message_few: '{{count}} messages',
-    message_many: '{{count}} messages',
+    message: '{{count}} message',
+    message_other: '{{count}} messages',
   },
 };
