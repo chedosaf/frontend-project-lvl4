@@ -10,4 +10,4 @@ if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
 
-init();
+ReactDOM.render(init(), document.querySelector('#chat'));
