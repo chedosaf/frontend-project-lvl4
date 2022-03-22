@@ -73,7 +73,7 @@ const LoginForm = () => {
           : null}
       </Form.Group>
       <Form.Group>
-        <Form.Label className="visually-hidden" htmlFor="Пароль">Пароль</Form.Label>
+        <Form.Label className="visually-hidden" htmlFor="password">Пароль</Form.Label>
         <Form.Control
           id="password"
           name="password"
