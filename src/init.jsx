@@ -3,17 +3,15 @@ import i18n from 'i18next';
 import { Provider } from 'react-redux';
 import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
 import { initReactI18next, I18nextProvider } from 'react-i18next';
-import io from 'socket.io-client';
 import { configureStore } from '@reduxjs/toolkit';
 import AuthProvider from './providers/index.jsx';
 import App from './components/app.jsx';
-import Listener from './components/listenerContainer.jsx';
 import resources from './locales/index.js';
 import channelsReducer, {
   addMessage, addChannel, removeChannel, renameChannel, setCurrentChannelId,
 } from './slices/channelsSlice.js';
 
-const init = () => {
+const init = (socket) => {
   const store = configureStore({
     reducer: {
       channels: channelsReducer,
@@ -39,8 +37,6 @@ const init = () => {
     },
   };
 
-  const socket = io();
-
   socket.on('connect', () => {
     console.log(socket.connected);
   });
@@ -64,11 +60,9 @@ const init = () => {
       <ErrorBoundary>
         <AuthProvider>
           <Provider store={store}>
-            <Listener>
-              <I18nextProvider i18n={i18n}>
-                <App />
-              </I18nextProvider>
-            </Listener>
+            <I18nextProvider i18n={i18n}>
+              <App />
+            </I18nextProvider>
           </Provider>
         </AuthProvider>
       </ErrorBoundary>

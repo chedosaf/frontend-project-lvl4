@@ -70,7 +70,7 @@ const LoginForm = () => {
   return (
     <Form noValidate onSubmit={formik.handleSubmit} className="mt-3 mt-mb-0">
       <Form.Group>
-        <Form.Label htmlFor="userName" />
+        <Form.Label htmlFor={t('registration.userName')} />
         <Form.Control
           id="username"
           name="username"
@@ -87,7 +87,7 @@ const LoginForm = () => {
           : null}
       </Form.Group>
       <Form.Group>
-        <Form.Label htmlFor="password" />
+        <Form.Label htmlFor={t('registration.password')} />
         <Form.Control
           id="password"
           name="password"
@@ -104,7 +104,7 @@ const LoginForm = () => {
           : null}
       </Form.Group>
       <Form.Group>
-        <Form.Label htmlFor="confirmPassword" />
+        <Form.Label htmlFor={t('registration.passwordConferm')} />
         <Form.Control
           id="confirmPassword"
           name="confirmPassword"

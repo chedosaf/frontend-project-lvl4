@@ -8,7 +8,7 @@ import {
 import filter from 'leo-profanity';
 import { useTranslation } from 'react-i18next';
 import Message from './message.jsx';
-import getters from './gettorsForUseSelector.js';
+import getters from '../helpers/gettorsForUseSelector.js';
 
 const MainChatBar = () => {
   const socket = io();

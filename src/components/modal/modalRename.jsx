@@ -7,7 +7,7 @@ import {
 } from 'react-bootstrap';
 import io from 'socket.io-client';
 import * as yup from 'yup';
-import getters from '../gettorsForUseSelector.js';
+import getters from '../../helpers/gettorsForUseSelector.js';
 
 const Rename = (props) => {
   const socket = io();
