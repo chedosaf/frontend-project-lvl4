@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 import {
   Col, Container, Button, Form,
 } from 'react-bootstrap';
-import filter from 'leo-profanity';
 import { useTranslation } from 'react-i18next';
 import Message from './message.jsx';
 import getters from '../helpers/gettorsForUseSelector.js';
@@ -22,8 +21,7 @@ const MainChatBar = () => {
   const activeChannel = useSelector(getters.getActiveChannel);
 
   const messageChange = ({ target }) => {
-    const filteredMessage = filter.clean(target.value);
-    setMessage(filteredMessage);
+    setMessage(target.value);
   };
 
   const currentMessages = storeMessages.filter((el) => el.chatId === curChennel);

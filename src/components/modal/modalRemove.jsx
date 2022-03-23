@@ -5,7 +5,6 @@ import {
 } from 'react-bootstrap';
 import SocketContext from '../../contexts/socketContext.jsx';
 
-
 const Remove = (props) => {
   const socket = useContext(SocketContext);
   const { onHide } = props;
