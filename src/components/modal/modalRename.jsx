@@ -54,7 +54,7 @@ const Rename = (props) => {
       <Modal.Body>
         <Container fluid className="p-0">
           <Form onSubmit={formik.handleSubmit}>
-
+            <Form.Label className="visually-hidden" htmlFor="newchannelname">Имя канала</Form.Label>
             <Form.Control
               onChange={formik.handleChange}
               name="newchannelname"
