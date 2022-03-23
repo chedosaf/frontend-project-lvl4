@@ -10,13 +10,16 @@ import resources from './locales/index.js';
 import channelsReducer, {
   addMessage, addChannel, removeChannel, renameChannel, setCurrentChannelId,
 } from './slices/channelsSlice.js';
+import SocketContext from './contexts/socketContext.jsx';
 
-const init = (socket) => {
+const init = (socketInit) => {
   const store = configureStore({
     reducer: {
       channels: channelsReducer,
     },
   });
+
+  const socket = socketInit;
 
   i18n
     .use(initReactI18next)
@@ -58,13 +61,15 @@ const init = (socket) => {
   return (
     <RollbarProvider config={rollbarConfig}>
       <ErrorBoundary>
-        <AuthProvider>
-          <Provider store={store}>
-            <I18nextProvider i18n={i18n}>
-              <App />
-            </I18nextProvider>
-          </Provider>
-        </AuthProvider>
+        <SocketContext.Provider value={socket}>
+          <AuthProvider>
+            <Provider store={store}>
+              <I18nextProvider i18n={i18n}>
+                <App />
+              </I18nextProvider>
+            </Provider>
+          </AuthProvider>
+        </SocketContext.Provider>
       </ErrorBoundary>
     </RollbarProvider>
   );

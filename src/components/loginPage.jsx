@@ -83,7 +83,7 @@ const LoginForm = () => {
           value={formik.values.password}
           isInvalid={authFailed || !!formik.errors.password}
           placeholder={t('registration.password')}
-          className="form-control"
+          className="form-control mt-3"
         />
         {formik.errors.password
           ? <div className="invalid-feedback">{formik.errors.password}</div>

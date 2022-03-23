@@ -1,6 +1,7 @@
 // @ts-check
-import React, { useState, useEffect, useRef } from 'react';
-import io from 'socket.io-client';
+import React, {
+  useState, useEffect, useRef, useContext,
+} from 'react';
 import { useSelector } from 'react-redux';
 import {
   Col, Container, Button, Form,
@@ -9,11 +10,11 @@ import filter from 'leo-profanity';
 import { useTranslation } from 'react-i18next';
 import Message from './message.jsx';
 import getters from '../helpers/gettorsForUseSelector.js';
+import SocketContext from '../contexts/socketContext.jsx';
 
 const MainChatBar = () => {
-  const socket = io();
+  const socket = useContext(SocketContext);
   const { t } = useTranslation();
-  filter.loadDictionary(t('locale'));
   const inputRef = useRef();
   const [message, setMessage] = useState('');
   const storeMessages = useSelector(getters.getMessages);

@@ -8,5 +8,6 @@ import init from './init.jsx';
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
+const socket = io();
 
-ReactDOM.render(init(io()), document.querySelector('#chat'));
+ReactDOM.render(init(socket), document.querySelector('#chat'));

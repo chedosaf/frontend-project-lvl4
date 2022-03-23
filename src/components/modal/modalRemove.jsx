@@ -1,13 +1,13 @@
 // @ts-check
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Modal, FormGroup, Container, Button,
 } from 'react-bootstrap';
-import io from 'socket.io-client';
+import SocketContext from '../../contexts/socketContext.jsx';
 
-const socket = io();
 
 const Remove = (props) => {
+  const socket = useContext(SocketContext);
   const { onHide } = props;
   const { notify } = props;
 

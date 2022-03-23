@@ -1,16 +1,16 @@
 // @ts-check
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
 import {
   Modal, Form, Container, Button,
 } from 'react-bootstrap';
-import io from 'socket.io-client';
 import * as yup from 'yup';
 import getters from '../../helpers/gettorsForUseSelector.js';
+import SocketContext from '../../contexts/socketContext.jsx';
 
 const Rename = (props) => {
-  const socket = io();
+  const socket = useContext(SocketContext);
   const { notify } = props;
   const storeChannels = useSelector(getters.getChannels);
   const storeChannelsNames = storeChannels.map((channel) => channel.name);
