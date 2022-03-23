@@ -48,7 +48,7 @@ const ChannelsBar = (props) => {
                   <span className="me-1">{item.name}</span>
                 </button>
                 <Dropdown>
-                  <Dropdown.Toggle name="Управление каналом" variant="" id="dropdown-basic" />
+                  <Dropdown.Toggle variant="" id="dropdown-basic"><span className="visually-hidden">Управление каналом</span></Dropdown.Toggle>
                   <Dropdown.Menu>
                     <Dropdown.Item href="#/action-1" onClick={() => showModal('removing', item)}>{t('delete')}</Dropdown.Item>
                     <Dropdown.Item href="#/action-2" onClick={() => showModal('renaming', item)}>{t('rename')}</Dropdown.Item>
