@@ -21,6 +21,14 @@ const ChannelsBar = (props) => {
 
   return (
     <>
+      {' '}
+      <style type="text/css">
+        {`
+         .btn-flat {
+         text-overflow: ellipsis;
+         }
+        `}
+      </style>
       <Container className="d-flex justify-content-between mb-2 ps-4 pe-2">
         <span>{t('channels')}</span>
         <Button type="button" className="p-0 ml-1 btn btn-group-vertical" onClick={() => showModal('adding')}>
@@ -28,6 +36,7 @@ const ChannelsBar = (props) => {
         </Button>
       </Container>
       <ListGroup className="flex-column nav-pills nav-fill px-2">
+
         {storeChannels.map((item) => {
           const btnClass = cn('w-100', 'rounded-0', 'text-start', 'text-truncat', 'btn', {
             'btn-secondary': item.id === activeChannel,
@@ -35,18 +44,19 @@ const ChannelsBar = (props) => {
           if (!item.removable) {
             return (
               <ListGroup.Item key={item.id} className="w-100 p-0" onClick={() => makeActive(item.id)}>
-                <button type="button" className={btnClass} style={{ overflow: 'hidden' }}>
+                <Button variant="flat" type="button" className={btnClass} style={{ overflow: 'hidden' }}>
                   <span className="me-1">#</span>
                   {item.name}
-                </button>
+                </Button>
               </ListGroup.Item>
             );
           } return (
             <ListGroup.Item key={item.id} className="w-100 p-0" onClick={() => makeActive(item.id)}>
               <Container role="group" className="d-flex dropdown btn-group p-0">
-                <button type="button" className={btnClass} style={{ overflow: 'hidden' }}>
-                  <span className="me-1">{item.name}</span>
-                </button>
+                <Button variant="flat" type="button" className={btnClass} style={{ overflow: 'hidden' }}>
+                  <span className="me-1">#</span>
+                  {item.name}
+                </Button>
                 <Dropdown>
                   <Dropdown.Toggle variant="" id="dropdown-basic"><span className="visually-hidden">Управление каналом</span></Dropdown.Toggle>
                   <Dropdown.Menu>

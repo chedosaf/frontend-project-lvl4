@@ -59,10 +59,10 @@ const Chat = (props) => {
     <>
       <Container className=" my-4 overflow-hidden rounded shadow" style={{ height: '80vh' }}>
         <Row className="h-100 bg-white flex-md-row">
-          <Col sm={2} className="border-end pt-5 px-0 bg-light">
+          <Col className="col-4 col-md-2 border-end pt-5 px-0 bg-light">
             <ChannelsBar showModal={showModal} />
           </Col>
-          <Col sm className="p-0 h-100">
+          <Col className="p-0 h-100">
             <MainChatBar />
           </Col>
         </Row>
