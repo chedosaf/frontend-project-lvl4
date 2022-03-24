@@ -4,7 +4,7 @@ import React, {
 } from 'react';
 import { useSelector } from 'react-redux';
 import {
-  Col, Container, Button, Form, Row,
+  Col, Container, Button, Form,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import Message from './message.jsx';
