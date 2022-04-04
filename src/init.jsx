@@ -13,6 +13,8 @@ import channelsReducer, {
 import sendMessageContext from './contexts/sendMessageContext.jsx';
 import channelChangeContext from './contexts/channelChangeContext.jsx';
 
+const accessToken = '83b8de395eb445ca84c7ce8cfdbaf296';
+
 const init = (socketInit) => {
   const store = configureStore({
     reducer: {
@@ -33,7 +35,7 @@ const init = (socketInit) => {
     });
 
   const rollbarConfig = {
-    accessToken: '83b8de395eb445ca84c7ce8cfdbaf296',
+    accessToken,
     captureUncaught: true,
     captureUnhandledRejections: true,
     payload: {
