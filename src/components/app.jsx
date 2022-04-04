@@ -17,8 +17,8 @@ import LoginPage from './LoginForm.jsx';
 import NotFoundPage from './NotFoundPage.jsx';
 import Chat from './ChatPage.jsx';
 
-import PrivateRoute from './privateRoute.jsx';
-import SignPage from './signPage.jsx';
+import PrivateRoute from './PrivateRoute.jsx';
+import SignPage from './SignPage.jsx';
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
