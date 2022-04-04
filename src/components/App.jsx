@@ -43,6 +43,13 @@ const App = () => {
       position: toast.POSITION.TOP_RIGHT,
     }),
   };
+  const routes = {
+    main: '/',
+    login: '/login',
+    notFoundPage: '/not-found-404',
+    signUp: 'signup',
+    else: '*',
+  };
 
   return (
     <>
@@ -50,17 +57,17 @@ const App = () => {
         <NavBar />
         <Routes>
           <Route
-            path="/"
+            path={routes.main}
             element={(
               <PrivateRoute>
                 <Chat notify={notify} />
               </PrivateRoute>
             )}
           />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/not-found-404" element={<NotFoundPage />} />
-          <Route path="/signup" element={<SignPage />} />
-          <Route path="*" element={<Navigate to="/not-found-404" />} />
+          <Route path={routes.login} element={<LoginPage />} />
+          <Route path={routes.notFoundPage} element={<NotFoundPage />} />
+          <Route path={routes.signUp} element={<SignPage />} />
+          <Route path={routes.else} element={<Navigate to={routes.notFoundPage} />} />
         </Routes>
       </Router>
       <ToastContainer />

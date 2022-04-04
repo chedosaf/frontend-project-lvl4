@@ -6,25 +6,27 @@ import {
   Modal, Form, Container, Button,
 } from 'react-bootstrap';
 import * as yup from 'yup';
+import { useTranslation } from 'react-i18next';
 import getters from '../../selectors/gettorsForUseSelector.js';
-import SocketContext from '../../contexts/socketContext.jsx';
+import channelChangeContext from '../../contexts/channelChangeContext.jsx';
 
 const ModalRename = (props) => {
-  const socket = useContext(SocketContext);
+  const channelChange = useContext(channelChangeContext);
   const { notify } = props;
+  const { t } = useTranslation();
   const storeChannels = useSelector(getters.getChannels);
   const storeChannelsNames = storeChannels.map((channel) => channel.name);
   const { modalInfo } = props;
   const { item } = modalInfo;
   const DisplayingErrorMessagesSchema = yup.object().shape({
     newchannelname: yup.string()
-      .min(1, 'Обязательное поле').notOneOf(storeChannelsNames)
-      .required('Required'),
+      .min(1, t('validationErrors.required')).notOneOf(storeChannelsNames)
+      .required(t('validationErrors.required')),
   });
 
   const generateOnSubmit = ({ onHide }) => (values) => {
-    socket.emit('renameChannel', { id: item.id, name: values.newchannelname });
-    notify.renameChannellSuccess();
+    const btn = document.querySelector('button[type="submit"]');
+    channelChange('renameChannel', { id: item.id, name: values.newchannelname }, btn, notify);
     onHide();
   };
 

@@ -10,7 +10,8 @@ import resources from './locales/index.js';
 import channelsReducer, {
   addMessage, addChannel, removeChannel, renameChannel, setCurrentChannelId,
 } from './slices/channelsSlice.js';
-import SocketContext from './contexts/socketContext.jsx';
+import sendMessageContext from './contexts/sendMessageContext.jsx';
+import channelChangeContext from './contexts/channelChangeContext.jsx';
 
 const init = (socketInit) => {
   const store = configureStore({
@@ -58,18 +59,50 @@ const init = (socketInit) => {
     store.dispatch(renameChannel(channel));
   });
 
+  const notifyActions = {
+    newChannel: 'addChannellSuccess',
+    removeChannel: 'removeChannellSuccess',
+    renameChannel: 'renameChannellSuccess',
+
+  };
+
+  const sendMessage = (message, userId, curChennel, btn) => socket.emit('newMessage', { message, auth: userId.username, chatId: curChennel }, (response) => {
+    if (response.status === 'ok') {
+      btn.removeAttribute('disabled');
+    } else {
+      btn.removeAttribute('disabled');
+      throw Error('сообщение не отправлено');
+    }
+  });
+
+  const channelChange = (changeName, values, btn, notify) => {
+    socket.emit(changeName, values, (response) => {
+      if (response.status === 'ok') {
+        btn.removeAttribute('disabled');
+        notify[notifyActions[changeName]]();
+      } else {
+        btn.removeAttribute('disabled');
+        notify.showChannellFailure();
+      }
+    });
+  };
+
   return (
     <RollbarProvider config={rollbarConfig}>
       <ErrorBoundary>
-        <SocketContext.Provider value={socket}>
-          <AuthProvider>
-            <Provider store={store}>
-              <I18nextProvider i18n={i18n}>
-                <App />
-              </I18nextProvider>
-            </Provider>
-          </AuthProvider>
-        </SocketContext.Provider>
+
+        <AuthProvider>
+          <Provider store={store}>
+            <I18nextProvider i18n={i18n}>
+              <sendMessageContext.Provider value={sendMessage}>
+                <channelChangeContext.Provider value={channelChange}>
+                  <App />
+                </channelChangeContext.Provider>
+              </sendMessageContext.Provider>
+            </I18nextProvider>
+          </Provider>
+        </AuthProvider>
+
       </ErrorBoundary>
     </RollbarProvider>
   );

@@ -6,33 +6,29 @@ import {
   Modal, Form, Container, Button,
 } from 'react-bootstrap';
 import * as yup from 'yup';
+import { useTranslation } from 'react-i18next';
 import getters from '../../selectors/gettorsForUseSelector.js';
-import SocketContext from '../../contexts/socketContext.jsx';
+import channelChangeContext from '../../contexts/channelChangeContext.jsx';
 
 const ModalAdd = (props) => {
-  const socket = useContext(SocketContext);
+  const channelChange = useContext(channelChangeContext);
   const { notify } = props;
+  const { t } = useTranslation();
   const storeChannels = useSelector(getters.getChannels);
   const storeChannelsNames = storeChannels.map((channel) => channel.name);
 
   const DisplayingErrorMessagesSchema = yup.object().shape({
     newchannelname: yup.string()
-      .min(1, 'Обязательное поле').notOneOf(storeChannelsNames)
-      .required('Required'),
+      .min(1, t('validationErrors.required')).notOneOf(storeChannelsNames)
+      .required(t('validationErrors.required')),
   });
 
   const generateOnSubmit = ({ onHide }) => (values) => {
     const btn = document.querySelector('button[type="submit"]');
     btn.setAttribute('disabled', 'true');
-    socket.emit('newChannel', { name: values.newchannelname }, (response) => {
-      if (response.status === 'ok') {
-        btn.removeAttribute('disabled');
-        notify.addChannellSuccess();
-      } else {
-        btn.removeAttribute('disabled');
-        notify.showChannellFailer();
-      }
-    });
+
+    channelChange('newChannel', { name: values.newchannelname }, btn, notify);
+
     onHide();
   };
 

@@ -35,7 +35,7 @@ const Chat = (props) => {
         dispatch(updateMessages(messages));
         dispatch(setCurrentChannelId(currentChannelId));
       } catch {
-        notify.fetchDataFailer();
+        notify.fetchDataFailure();
       }
     };
 

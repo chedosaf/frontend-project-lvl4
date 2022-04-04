@@ -9,10 +9,10 @@ import {
 import { useTranslation } from 'react-i18next';
 import Message from './Message.jsx';
 import getters from '../selectors/gettorsForUseSelector.js';
-import SocketContext from '../contexts/socketContext.jsx';
+import sendMessageContext from '../contexts/sendMessageContext.jsx';
 
 const MainChatBar = () => {
-  const socket = useContext(SocketContext);
+  const sendMessage = useContext(sendMessageContext);
   const { t } = useTranslation();
   const inputRef = useRef();
   const [message, setMessage] = useState('');
@@ -31,14 +31,7 @@ const MainChatBar = () => {
     const btn = document.querySelector('button[type="submit"]');
     btn.setAttribute('disabled', 'true');
     const userId = JSON.parse(localStorage.getItem('userId'));
-    socket.emit('newMessage', { message, auth: userId.username, chatId: curChennel }, (response) => {
-      if (response.status === 'ok') {
-        btn.removeAttribute('disabled');
-      } else {
-        btn.removeAttribute('disabled');
-        throw Error('сообщение не отправлено');
-      }
-    });
+    sendMessage(message, userId, curChennel, btn);
     setMessage('');
   };
 

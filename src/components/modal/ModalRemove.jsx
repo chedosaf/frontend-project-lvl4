@@ -3,18 +3,18 @@ import React, { useContext } from 'react';
 import {
   Modal, FormGroup, Container, Button,
 } from 'react-bootstrap';
-import SocketContext from '../../contexts/socketContext.jsx';
+import channelChangeContext from '../../contexts/channelChangeContext.jsx';
 
 const ModalRemove = (props) => {
-  const socket = useContext(SocketContext);
+  const channelChange = useContext(channelChangeContext);
   const { onHide } = props;
   const { notify } = props;
 
   const generateOnSubmit = ({ modalInfo }) => (e) => {
     e.preventDefault();
+    const btn = document.querySelector('button[type="submit"]');
     const { item } = modalInfo;
-    socket.emit('removeChannel', { id: item.id });
-    notify.removeChannellSuccess();
+    channelChange('removeChannel', { id: item.id }, btn, notify);
     onHide();
   };
   const onSubmit = generateOnSubmit(props);
