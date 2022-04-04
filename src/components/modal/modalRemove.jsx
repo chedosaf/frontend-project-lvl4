@@ -5,7 +5,7 @@ import {
 } from 'react-bootstrap';
 import SocketContext from '../../contexts/socketContext.jsx';
 
-const Remove = (props) => {
+const ModalRemove = (props) => {
   const socket = useContext(SocketContext);
   const { onHide } = props;
   const { notify } = props;
@@ -52,4 +52,4 @@ const Remove = (props) => {
   );
 };
 
-export default Remove;
+export default ModalRemove;

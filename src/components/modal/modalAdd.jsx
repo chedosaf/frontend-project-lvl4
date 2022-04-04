@@ -6,10 +6,10 @@ import {
   Modal, Form, Container, Button,
 } from 'react-bootstrap';
 import * as yup from 'yup';
-import getters from '../../helpers/gettorsForUseSelector.js';
+import getters from '../../selectors/gettorsForUseSelector.js';
 import SocketContext from '../../contexts/socketContext.jsx';
 
-const Add = (props) => {
+const ModalAdd = (props) => {
   const socket = useContext(SocketContext);
   const { notify } = props;
   const storeChannels = useSelector(getters.getChannels);
@@ -94,4 +94,4 @@ const Add = (props) => {
   );
 };
 
-export default Add;
+export default ModalAdd;

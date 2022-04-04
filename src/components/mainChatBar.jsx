@@ -7,8 +7,8 @@ import {
   Col, Container, Button, Form,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import Message from './message.jsx';
-import getters from '../helpers/gettorsForUseSelector.js';
+import Message from './Message.jsx';
+import getters from '../selectors/gettorsForUseSelector.js';
 import SocketContext from '../contexts/socketContext.jsx';
 
 const MainChatBar = () => {

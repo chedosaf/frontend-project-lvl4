@@ -5,7 +5,7 @@ import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
 import { initReactI18next, I18nextProvider } from 'react-i18next';
 import { configureStore } from '@reduxjs/toolkit';
 import AuthProvider from './providers/index.jsx';
-import App from './components/app.jsx';
+import App from './components/App.jsx';
 import resources from './locales/index.js';
 import channelsReducer, {
   addMessage, addChannel, removeChannel, renameChannel, setCurrentChannelId,

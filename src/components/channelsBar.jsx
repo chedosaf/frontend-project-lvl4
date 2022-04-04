@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import cn from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { setCurrentChannelId } from '../slices/channelsSlice.js';
-import getters from '../helpers/gettorsForUseSelector.js';
+import getters from '../selectors/gettorsForUseSelector.js';
 
 const ChannelsBar = (props) => {
   const { showModal } = props;

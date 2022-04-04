@@ -12,10 +12,10 @@ import 'react-toastify/scss/main.scss';
 
 import { useTranslation } from 'react-i18next';
 
-import NavBar from './navBar.jsx';
-import LoginPage from './loginPage.jsx';
-import NotFoundPage from './notFoundPage.jsx';
-import Chat from './chatPage.jsx';
+import NavBar from './NavBar.jsx';
+import LoginPage from './LoginForm.jsx';
+import NotFoundPage from './NotFoundPage.jsx';
+import Chat from './ChatPage.jsx';
 
 import PrivateRoute from './privateRoute.jsx';
 import SignPage from './signPage.jsx';

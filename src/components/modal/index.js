@@ -1,12 +1,12 @@
 // @ts-check
-import Add from './modalAdd.jsx';
-import Remove from './modalRemove.jsx';
-import Rename from './modalRename.jsx';
+import ModalAdd from './ModalAdd.jsx';
+import ModalRemove from './ModalRemove.jsx';
+import ModalRename from './ModalRename.jsx';
 
 const modals = {
-  adding: Add,
-  removing: Remove,
-  renaming: Rename,
+  adding: ModalAdd,
+  removing: ModalRemove,
+  renaming: ModalRename,
 };
 
 export default (modalName) => modals[modalName];

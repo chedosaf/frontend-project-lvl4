@@ -9,8 +9,8 @@ import {
   addChannels, setCurrentChannelId,
   updateMessages,
 } from '../slices/channelsSlice.js';
-import ChannelsBar from './channelsBar.jsx';
-import MainChatBar from './mainChatBar.jsx';
+import ChannelsBar from './ChannelsBar.jsx';
+import MainChatBar from './MainChatBar.jsx';
 import getModal from './modal/index.js';
 
 const getAuthHeader = () => {

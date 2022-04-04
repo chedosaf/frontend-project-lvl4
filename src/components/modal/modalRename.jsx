@@ -6,10 +6,10 @@ import {
   Modal, Form, Container, Button,
 } from 'react-bootstrap';
 import * as yup from 'yup';
-import getters from '../../helpers/gettorsForUseSelector.js';
+import getters from '../../selectors/gettorsForUseSelector.js';
 import SocketContext from '../../contexts/socketContext.jsx';
 
-const Rename = (props) => {
+const ModalRename = (props) => {
   const socket = useContext(SocketContext);
   const { notify } = props;
   const storeChannels = useSelector(getters.getChannels);
@@ -86,4 +86,4 @@ const Rename = (props) => {
   );
 };
 
-export default Rename;
+export default ModalRename;
