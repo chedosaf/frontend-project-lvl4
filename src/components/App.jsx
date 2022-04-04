@@ -54,7 +54,7 @@ const App = () => {
   return (
     <>
       <Router>
-        <NavBar />
+        <NavBar routes={routes} />
         <Routes>
           <Route
             path={routes.main}
