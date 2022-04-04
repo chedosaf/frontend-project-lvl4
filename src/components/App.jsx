@@ -11,7 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/scss/main.scss';
 
 import { useTranslation } from 'react-i18next';
-import './extraStyles.scss';
+import '../css/extraStyles.scss';
 
 import NavBar from './NavBar.jsx';
 import LoginPage from './LoginForm.jsx';
