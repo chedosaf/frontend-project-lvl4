@@ -4,7 +4,7 @@
 
 <a href="https://codeclimate.com/github/chedosaf/frontend-project-lvl4/maintainability"><img src="https://api.codeclimate.com/v1/badges/1ed5729ed81d55c07c25/maintainability" /></a>
 
-![example workflow](https://github.com/chedosaf/frontend-project-lvl4/actions/workflows/lint/badge.svg)
+![example workflow](https://github.com/chedosaf/frontend-project-lvl4/actions/workflows/lint.yml/badge.svg)
 
 # Application: Chat (Slack)
 
