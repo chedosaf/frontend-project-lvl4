@@ -28,7 +28,7 @@ $ make start
 This project is a simple version of slack-type chat.
 
 Using:
-React + Redux + Forms
+React + Hooks + Redux + Forms
 Bootstrap on React
 Websockets
 Async(Async/Await)
