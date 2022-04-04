@@ -22,13 +22,6 @@ const ChannelsBar = (props) => {
   return (
     <>
       {' '}
-      <style type="text/css">
-        {`
-         .btn-flat {
-         text-overflow: ellipsis;
-         }
-        `}
-      </style>
       <Container className="d-flex justify-content-between mb-2 ps-4 pe-2">
         <span>{t('channels')}</span>
         <Button type="button" className="p-0 ml-1 btn btn-group-vertical" onClick={() => showModal('adding')}>
