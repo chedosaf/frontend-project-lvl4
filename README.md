@@ -1,10 +1,14 @@
-# project-frontend-l4-server
+## Hexlet tests and linter status:
 
 [![github action status](https://github.com/hexlet-components/projects-frontend-l4-server/workflows/Node%20CI/badge.svg)](../../actions)
 
 <a href="https://codeclimate.com/github/chedosaf/frontend-project-lvl4/maintainability"><img src="https://api.codeclimate.com/v1/badges/1ed5729ed81d55c07c25/maintainability" /></a>
 
-## Requirements
+# Application: Chat (Slack)
+
+The simplified version of Slack-Chart.
+
+## Deploy
 
 * [Heroku CLI](https://frontend-hexlet-4-chedosaf.herokuapp.com/)
 
@@ -21,7 +25,14 @@ $ make start
 # open http://localhost:5000
 ```
 
-[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/assets/master/images/hexlet_logo128.png)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=project-frontend-l4-server)
+This project is a simple version of slack-type chat.
 
-This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet (in Russian)](https://ru.hexlet.io/pages/about?utm_source=github&utm_medium=link&utm_campaign=project-frontend-l4-server).
-
+Using:
+React + Redux + Forms
+Bootstrap on React
+Websockets
+Async(Async/Await)
+HTTP-requests(Axios)
+JS-Coockie
+Webpack
+and a lot of ES6+ JS
