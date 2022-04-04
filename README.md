@@ -33,6 +33,4 @@ Bootstrap on React
 Websockets
 Async(Async/Await)
 HTTP-requests(Axios)
-JS-Coockie
-Webpack
 and a lot of ES6+ JS
