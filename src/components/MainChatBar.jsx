@@ -16,15 +16,13 @@ const MainChatBar = () => {
   const { t } = useTranslation();
   const inputRef = useRef();
   const [message, setMessage] = useState('');
-  const storeMessages = useSelector(getters.getMessages);
   const curChennel = useSelector(getters.getCurrentChannelId);
   const activeChannel = useSelector(getters.getActiveChannel);
+  const currentMessages = useSelector(getters.getActivemessages);
 
   const messageChange = ({ target }) => {
     setMessage(target.value);
   };
-
-  const currentMessages = storeMessages.filter((el) => el.chatId === curChennel);
 
   const handleSubmit = (e) => {
     e.preventDefault();

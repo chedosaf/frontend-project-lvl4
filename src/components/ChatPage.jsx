@@ -21,13 +21,15 @@ const getAuthHeader = () => {
   return {};
 };
 
+const dataPath = '/api/v1/data';
+
 const Chat = (props) => {
   const dispatch = useDispatch();
   const { notify } = props;
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        const { data } = await axios.get('/api/v1/data', { headers: getAuthHeader() });
+        const { data } = await axios.get(dataPath, { headers: getAuthHeader() });
         const { channels } = data;
         const { messages } = data;
         const { currentChannelId } = data;

@@ -9,7 +9,9 @@ const getActiveChannel = (state) => {
   }
   return channel.name;
 };
+const getActivemessages = (state) => state.channels.messages
+  .filter((el) => el.chatId === state.channels.currentChannelId);
 
 export default {
-  getChannels, getCurrentChannelId, getMessages, getActiveChannel,
+  getChannels, getCurrentChannelId, getMessages, getActiveChannel, getActivemessages,
 };
