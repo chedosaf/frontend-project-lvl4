@@ -7,7 +7,7 @@ import {
 } from 'react-bootstrap';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
-import getters from '../../selectors/gettorsForUseSelector.js';
+import getters from '../../selectors/channelsSelectors.js';
 import channelChangeContext from '../../contexts/channelChangeContext.jsx';
 
 const ModalAdd = (props) => {

@@ -7,11 +7,12 @@ import {
 import { useDispatch } from 'react-redux';
 import {
   addChannels, setCurrentChannelId,
-  updateMessages,
 } from '../slices/channelsSlice.js';
+import { updateMessages } from '../slices/messagesSlice.js';
 import ChannelsBar from './ChannelsBar.jsx';
 import MainChatBar from './MainChatBar.jsx';
 import getModal from './modal/index.js';
+import routes from '../routes.js';
 
 const getAuthHeader = () => {
   const userId = JSON.parse(localStorage.getItem('userId'));
@@ -21,15 +22,13 @@ const getAuthHeader = () => {
   return {};
 };
 
-const dataPath = '/api/v1/data';
-
 const Chat = (props) => {
   const dispatch = useDispatch();
   const { notify } = props;
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        const { data } = await axios.get(dataPath, { headers: getAuthHeader() });
+        const { data } = await axios.get(routes.dataPath(), { headers: getAuthHeader() });
         const { channels } = data;
         const { messages } = data;
         const { currentChannelId } = data;

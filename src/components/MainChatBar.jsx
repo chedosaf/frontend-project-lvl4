@@ -8,7 +8,7 @@ import {
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import Message from './Message.jsx';
-import getters from '../selectors/gettorsForUseSelector.js';
+import getters from '../selectors/channelsSelectors.js';
 import sendMessageContext from '../contexts/sendMessageContext.jsx';
 
 const MainChatBar = () => {

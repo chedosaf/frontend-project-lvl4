@@ -1,12 +1,7 @@
 /* eslint no-param-reassign: ["error", { "props": false }] */
 
 import { createSlice } from '@reduxjs/toolkit';
-
-const initialState = {
-  channels: [],
-  currentChannelId: null,
-  messages: [],
-};
+import initialState from './state.js';
 
 export const channelsSlice = createSlice({
   name: 'channels',
@@ -30,11 +25,11 @@ export const channelsSlice = createSlice({
           return el;
         });
     },
-    addMessage: (state, action) => {
-      state.messages = [...state.messages, action.payload];
-    },
     setCurrentChannelId: (state, action) => {
       state.currentChannelId = action.payload;
+    },
+    addMessage: (state, action) => {
+      state.messages = [...state.messages, action.payload];
     },
     updateMessages: (state, action) => {
       state.messages = action.payload;

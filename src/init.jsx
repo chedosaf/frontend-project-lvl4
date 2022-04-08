@@ -8,17 +8,19 @@ import AuthProvider from './providers/index.jsx';
 import App from './components/App.jsx';
 import resources from './locales/index.js';
 import channelsReducer, {
-  addMessage, addChannel, removeChannel, renameChannel, setCurrentChannelId,
+  addChannel, removeChannel, renameChannel, setCurrentChannelId,
 } from './slices/channelsSlice.js';
+import messagesReducer, {
+  addMessage,
+} from './slices/messagesSlice.js';
 import sendMessageContext from './contexts/sendMessageContext.jsx';
 import channelChangeContext from './contexts/channelChangeContext.jsx';
-
-const accessToken = '83b8de395eb445ca84c7ce8cfdbaf296';
 
 const init = (socketInit) => {
   const store = configureStore({
     reducer: {
       channels: channelsReducer,
+      messages: messagesReducer,
     },
   });
 
@@ -35,7 +37,7 @@ const init = (socketInit) => {
     });
 
   const rollbarConfig = {
-    accessToken,
+    accessToken: '83b8de395eb445ca84c7ce8cfdbaf296',
     captureUncaught: true,
     captureUnhandledRejections: true,
     payload: {
