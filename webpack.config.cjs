@@ -2,13 +2,11 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const dotenv = require('dotenv');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
 
 module.exports = {
-
   mode,
   resolve: {
     extensions: ['.js', '.jsx'],
