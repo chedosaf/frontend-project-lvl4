@@ -9,6 +9,7 @@ import {
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import useAuth from '../hooks/index.jsx';
+import routes from '../routes.js';
 
 const LoginForm = () => {
   const auth = useAuth();
@@ -47,7 +48,7 @@ const LoginForm = () => {
     validationSchema: DisplayingErrorMessagesSchema,
     onSubmit: async (values) => {
       try {
-        const res = await axios.post('/api/v1/signup', values);
+        const res = await axios.post(routes.signUpPath(), values);
         auth.logIn();
         localStorage.setItem('userId', JSON.stringify(res.data));
         navigate('/');

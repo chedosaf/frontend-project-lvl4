@@ -20,6 +20,7 @@ import Chat from './ChatPage.jsx';
 
 import PrivateRoute from './PrivateRoute.jsx';
 import SignPage from './SignPage.jsx';
+import routes from '../routes.js';
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
@@ -44,31 +45,24 @@ const App = () => {
       position: toast.POSITION.TOP_RIGHT,
     }),
   };
-  const routes = {
-    main: '/',
-    login: '/login',
-    notFoundPage: '/not-found-404',
-    signUp: 'signup',
-    else: '*',
-  };
 
   return (
     <>
       <Router>
-        <NavBar routes={routes} />
+        <NavBar />
         <Routes>
           <Route
-            path={routes.main}
+            path={routes.main()}
             element={(
               <PrivateRoute>
                 <Chat notify={notify} />
               </PrivateRoute>
             )}
           />
-          <Route path={routes.login} element={<LoginPage />} />
-          <Route path={routes.notFoundPage} element={<NotFoundPage />} />
-          <Route path={routes.signUp} element={<SignPage />} />
-          <Route path={routes.else} element={<Navigate to={routes.notFoundPage} />} />
+          <Route path={routes.login()} element={<LoginPage />} />
+          <Route path={routes.notFoundPage()} element={<NotFoundPage />} />
+          <Route path={routes.signUp()} element={<SignPage />} />
+          <Route path={routes.else()} element={<Navigate to={routes.notFoundPage()} />} />
         </Routes>
       </Router>
       <ToastContainer />

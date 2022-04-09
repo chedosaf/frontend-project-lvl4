@@ -4,10 +4,10 @@ import { Button, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import useAuth from '../hooks/index.jsx';
+import routes from '../routes.js';
 
-const NavBar = (props) => {
+const NavBar = () => {
   const auth = useAuth();
-  const { routes } = props;
   const handeleLogOut = () => {
     auth.logOut();
   };
@@ -15,7 +15,7 @@ const NavBar = (props) => {
   return (
     <Nav className="shadow-sm navbar navbar-expand-lg navbar-light bg-white justify-content-between px-2">
       <Nav.Item as="li">
-        <Link className="navbar-brand" to={routes.main}>Hexlet Chat</Link>
+        <Link className="navbar-brand" to={routes.main()}>Hexlet Chat</Link>
       </Nav.Item>
       {!auth.loggedIn ? null
         : (
