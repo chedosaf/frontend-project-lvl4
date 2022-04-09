@@ -46,7 +46,7 @@ const init = (socketInit) => {
   };
 
   socket.on('connect', () => {
-    console.log(socket.connected);
+    console.log({ SoketConnected: socket.connected });
   });
   socket.on('newMessage', (message) => {
     store.dispatch(addMessage(message));
