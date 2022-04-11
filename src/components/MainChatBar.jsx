@@ -8,7 +8,8 @@ import {
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import Message from './Message.jsx';
-import getters from '../selectors/channelsSelectors.js';
+import channelsGetters from '../selectors/channelsSelectors.js';
+import messagessGetters from '../selectors/messagesSelectors.js';
 import sendMessageContext from '../contexts/sendMessageContext.jsx';
 
 const MainChatBar = () => {
@@ -16,9 +17,9 @@ const MainChatBar = () => {
   const { t } = useTranslation();
   const inputRef = useRef();
   const [message, setMessage] = useState('');
-  const curChennel = useSelector(getters.getCurrentChannelId);
-  const activeChannel = useSelector(getters.getActiveChannel);
-  const currentMessages = useSelector(getters.getActivemessages);
+  const curChennel = useSelector(channelsGetters.getCurrentChannelId);
+  const activeChannel = useSelector(channelsGetters.getActiveChannel);
+  const currentMessages = useSelector(messagessGetters.getActiveMessages);
 
   const messageChange = ({ target }) => {
     setMessage(target.value);
