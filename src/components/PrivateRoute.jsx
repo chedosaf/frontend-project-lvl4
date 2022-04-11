@@ -1,7 +1,7 @@
 // @ts-check
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import useAuth from '../hooks/index.jsx';
+import useAuth from '../hooks/index.js';
 
 const PrivateRoute = ({ children }) => {
   const auth = useAuth();

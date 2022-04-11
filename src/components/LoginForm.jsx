@@ -8,7 +8,7 @@ import {
   Button, Form, Container, Row, Col, Card,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import useAuth from '../hooks/index.jsx';
+import useAuth from '../hooks/index.js';
 import routes from '../routes.js';
 
 const LoginForm = () => {

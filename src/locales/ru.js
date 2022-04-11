@@ -36,5 +36,8 @@ export default {
     message_one: '{{count}} сообщение',
     message_few: '{{count}} сообщения',
     message_many: '{{count}} сообщений',
+    unfoundPage: 'Страница не найдена',
+    goTo: 'Но вы можете перейти',
+    mainPageLink: 'на главную страницу!',
   },
 };

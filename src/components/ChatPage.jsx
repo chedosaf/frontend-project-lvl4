@@ -12,7 +12,7 @@ import { updateMessages } from '../slices/messagesSlice.js';
 import ChannelsBar from './ChannelsBar.jsx';
 import MainChatBar from './MainChatBar.jsx';
 import getModal from './modal/index.js';
-import useAuth from '../hooks/index.jsx';
+import useAuth from '../hooks/index.js';
 import routes from '../routes.js';
 
 const Chat = (props) => {

@@ -35,5 +35,8 @@ export default {
     rename: 'Rename',
     message: '{{count}} message',
     message_other: '{{count}} messages',
+    unfoundPage: 'Page is not found',
+    goTo: 'You could go to',
+    mainPageLink: 'main page!',
   },
 };

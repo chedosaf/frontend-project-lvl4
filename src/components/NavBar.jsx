@@ -3,7 +3,7 @@ import React from 'react';
 import { Button, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import useAuth from '../hooks/index.jsx';
+import useAuth from '../hooks/index.js';
 import routes from '../routes.js';
 
 const NavBar = () => {
