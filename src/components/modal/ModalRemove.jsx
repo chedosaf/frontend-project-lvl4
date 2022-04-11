@@ -7,14 +7,17 @@ import channelChangeContext from '../../contexts/channelChangeContext.jsx';
 
 const ModalRemove = (props) => {
   const channelChange = useContext(channelChangeContext);
-  const { onHide } = props;
-  const { notify } = props;
+  const {
+    onHide,
+    notify,
+    btnDisable,
+    setBtnDisable,
+  } = props;
 
   const generateOnSubmit = ({ modalInfo }) => (e) => {
     e.preventDefault();
-    const btn = document.querySelector('button[type="submit"]');
     const { item } = modalInfo;
-    channelChange('removeChannel', { id: item.id }, btn, notify);
+    channelChange('removeChannel', { id: item.id }, setBtnDisable, notify);
     onHide();
   };
   const onSubmit = generateOnSubmit(props);
@@ -40,7 +43,7 @@ const ModalRemove = (props) => {
                 Отмена
               </Button>
 
-              <Button variant="danger" type="submit">
+              <Button disabled={btnDisable} variant="danger" type="submit">
                 Удалить
               </Button>
 

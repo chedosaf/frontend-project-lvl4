@@ -73,22 +73,22 @@ const init = (socketInit) => {
 
   };
 
-  const sendMessage = (message, userId, curChennel, btn) => socket.emit('newMessage', { message, auth: userId.username, chatId: curChennel }, (response) => {
+  const sendMessage = (message, userId, curChennel, setBtnDisable) => socket.emit('newMessage', { message, auth: userId.username, chatId: curChennel }, (response) => {
     if (response.status === 'ok') {
-      btn.removeAttribute('disabled');
+      setBtnDisable(false);
     } else {
-      btn.removeAttribute('disabled');
+      setBtnDisable(false);
       throw Error('сообщение не отправлено');
     }
   });
 
-  const channelChange = (changeName, values, btn, notify) => {
+  const channelChange = (changeName, values, setBtnDisable, notify) => {
     socket.emit(changeName, values, (response) => {
       if (response.status === 'ok') {
-        btn.removeAttribute('disabled');
+        setBtnDisable(false);
         notify[notifyActions[changeName]]();
       } else {
-        btn.removeAttribute('disabled');
+        setBtnDisable(false);
         notify.showChannellFailure();
       }
     });

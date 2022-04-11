@@ -19,6 +19,7 @@ const Chat = (props) => {
   const auth = useAuth();
   const dispatch = useDispatch();
   const { notify } = props;
+  const [btnDisable, setBtnDisable] = useState(false);
   useEffect(() => {
     const fetchContent = async () => {
       try {
@@ -43,7 +44,15 @@ const Chat = (props) => {
     }
 
     const Component = getModal(modalInfo.type);
-    return <Component modalInfo={modalInfo} onHide={hideModal} notify={notify} />;
+    return (
+      <Component
+        modalInfo={modalInfo}
+        onHide={hideModal}
+        notify={notify}
+        btnDisable={btnDisable}
+        setBtnDisable={setBtnDisable}
+      />
+    );
   };
 
   const [modalInfo, setModalInfo] = useState({ type: null, item: null });
@@ -58,7 +67,7 @@ const Chat = (props) => {
             <ChannelsBar showModal={showModal} />
           </Col>
           <Col className="p-0 h-100">
-            <MainChatBar />
+            <MainChatBar btnDisable={btnDisable} setBtnDisable={setBtnDisable} />
           </Col>
         </Row>
         {renderModal({ modalInfo, hideModal })}

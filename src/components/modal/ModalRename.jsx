@@ -12,11 +12,16 @@ import channelChangeContext from '../../contexts/channelChangeContext.jsx';
 
 const ModalRename = (props) => {
   const channelChange = useContext(channelChangeContext);
-  const { notify } = props;
+  const {
+    onHide,
+    notify,
+    modalInfo,
+    btnDisable,
+    setBtnDisable,
+  } = props;
   const { t } = useTranslation();
   const storeChannels = useSelector(getters.getChannels);
   const storeChannelsNames = storeChannels.map((channel) => channel.name);
-  const { modalInfo } = props;
   const { item } = modalInfo;
   const DisplayingErrorMessagesSchema = yup.object().shape({
     newchannelname: yup.string()
@@ -24,16 +29,13 @@ const ModalRename = (props) => {
       .required(t('validationErrors.required')),
   });
 
-  const generateOnSubmit = ({ onHide }) => (values) => {
-    const btn = document.querySelector('button[type="submit"]');
-    channelChange('renameChannel', { id: item.id, name: values.newchannelname }, btn, notify);
+  const generateOnSubmit = (values) => {
+    channelChange('renameChannel', { id: item.id, name: values.newchannelname }, setBtnDisable, notify);
     onHide();
   };
 
-  const { onHide } = props;
-
   const formik = useFormik({
-    onSubmit: generateOnSubmit(props),
+    onSubmit: generateOnSubmit,
     validationSchema: DisplayingErrorMessagesSchema,
     initialValues: { newchannelname: item.name },
   });
@@ -76,7 +78,7 @@ const ModalRename = (props) => {
                 Отмена
               </Button>
 
-              <Button variant="primary" type="submit">
+              <Button disabled={btnDisable} variant="primary" type="submit">
                 Отправить
               </Button>
 

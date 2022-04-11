@@ -12,7 +12,12 @@ import channelChangeContext from '../../contexts/channelChangeContext.jsx';
 
 const ModalAdd = (props) => {
   const channelChange = useContext(channelChangeContext);
-  const { notify } = props;
+  const {
+    onHide,
+    notify,
+    btnDisable,
+    setBtnDisable,
+  } = props;
   const { t } = useTranslation();
   const storeChannels = useSelector(getters.getChannels);
   const storeChannelsNames = storeChannels.map((channel) => channel.name);
@@ -23,19 +28,14 @@ const ModalAdd = (props) => {
       .required(t('validationErrors.required')),
   });
 
-  const generateOnSubmit = ({ onHide }) => (values) => {
-    const btn = document.querySelector('button[type="submit"]');
-    btn.setAttribute('disabled', 'true');
-
-    channelChange('newChannel', { name: values.newchannelname }, btn, notify);
-
+  const generateOnSubmit = (values) => {
+    setBtnDisable(true);
+    channelChange('newChannel', { name: values.newchannelname }, setBtnDisable, notify);
     onHide();
   };
 
-  const { onHide } = props;
-
   const formik = useFormik({
-    onSubmit: generateOnSubmit(props),
+    onSubmit: generateOnSubmit,
     validationSchema: DisplayingErrorMessagesSchema,
     initialValues: { newchannelname: '' },
   });
@@ -78,7 +78,7 @@ const ModalAdd = (props) => {
                 Отмена
               </Button>
 
-              <Button variant="primary" type="submit">
+              <Button disabled={btnDisable} variant="primary" type="submit">
                 Отправить
               </Button>
 
