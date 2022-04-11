@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 import '../css/extraStyles.scss';
 
 import NavBar from './NavBar.jsx';
-import LoginPage from './LoginForm.jsx';
+import LoginPage from './LoginPage.jsx';
 import NotFoundPage from './NotFoundPage.jsx';
 import Chat from './ChatPage.jsx';
 
