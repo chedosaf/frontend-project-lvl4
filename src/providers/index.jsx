@@ -9,10 +9,17 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem('userId');
     setLoggedIn(false);
   };
+  const getAuthHeader = () => {
+    const userId = JSON.parse(localStorage.getItem('userId'));
+    if (userId && userId.token) {
+      return { Authorization: `Bearer ${userId.token}` };
+    }
+    return {};
+  };
 
   return (
     <authContext.Provider value={{
-      loggedIn, logIn, logOut,
+      loggedIn, logIn, logOut, getAuthHeader,
     }}
     >
       {children}

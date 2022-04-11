@@ -5,7 +5,6 @@ import filter from 'leo-profanity';
 const Message = (props) => {
   const { user } = props;
   const { message } = props;
-  filter.add(filter.getDictionary('ru'));
   return (
     <>
       <div className="message">

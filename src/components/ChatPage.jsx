@@ -12,23 +12,17 @@ import { updateMessages } from '../slices/messagesSlice.js';
 import ChannelsBar from './ChannelsBar.jsx';
 import MainChatBar from './MainChatBar.jsx';
 import getModal from './modal/index.js';
+import useAuth from '../hooks/index.jsx';
 import routes from '../routes.js';
 
-const getAuthHeader = () => {
-  const userId = JSON.parse(localStorage.getItem('userId'));
-  if (userId && userId.token) {
-    return { Authorization: `Bearer ${userId.token}` };
-  }
-  return {};
-};
-
 const Chat = (props) => {
+  const auth = useAuth();
   const dispatch = useDispatch();
   const { notify } = props;
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        const { data } = await axios.get(routes.dataPath(), { headers: getAuthHeader() });
+        const { data } = await axios.get(routes.dataPath(), { headers: auth.getAuthHeader() });
         const { channels } = data;
         const { messages } = data;
         const { currentChannelId } = data;
