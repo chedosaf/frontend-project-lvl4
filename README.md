@@ -12,7 +12,7 @@ The simplified version of Slack-Chart.
 
 ## Deploy
 
-* [Heroku CLI](https://frontend-hexlet-4-chedosaf.herokuapp.com/)
+* [Project demo](https://frontend-hexlet-4-chedosaf.herokuapp.com/)
 
 ## Install
 
