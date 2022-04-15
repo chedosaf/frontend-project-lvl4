@@ -60,7 +60,6 @@ const MainChatBar = (props) => {
       </Container>
       <Container ref={messageEl} id="messages-box" className="chat-messages px-5 overflow-auto">
         {currentMessages.map((el) => <Message key={el.id} user={el.auth} message={el.message} />)}
-        <div ref={messageEl}/>
       </Container>
       <Container className="mt-auto px-5 py-3">
         <Form noValidate={false} className="form-inline border rounded-2" onSubmit={handleSubmit}>
