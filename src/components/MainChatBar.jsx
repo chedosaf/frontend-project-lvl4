@@ -3,6 +3,7 @@ import React, {
   useState, useEffect, useRef, useContext,
 } from 'react';
 import { useSelector } from 'react-redux';
+import { useStickyScroll } from 'use-chat-scroll';
 import {
   Col, Container, Button, Form,
 } from 'react-bootstrap';
@@ -34,11 +35,15 @@ const MainChatBar = (props) => {
     setMessage('');
   };
 
+  const messageEl = useRef(null);
+
+  useStickyScroll(messageEl, currentMessages);
+
   useEffect(() => {
     if (inputRef) {
       inputRef.current.focus();
     }
-  }, []);
+  }, [currentMessages]);
 
   return (
     <Col className="d-flex flex-column h-100">
@@ -53,8 +58,9 @@ const MainChatBar = (props) => {
           {t('message', { count: currentMessages.length })}
         </span>
       </Container>
-      <Container id="messages-box" className="chat-messages overflow-auto px-5 ">
+      <Container ref={messageEl} id="messages-box" className="chat-messages px-5 overflow-auto">
         {currentMessages.map((el) => <Message key={el.id} user={el.auth} message={el.message} />)}
+        <div ref={messageEl}/>
       </Container>
       <Container className="mt-auto px-5 py-3">
         <Form noValidate={false} className="form-inline border rounded-2" onSubmit={handleSubmit}>

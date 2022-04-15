@@ -1,5 +1,6 @@
 // @ts-check
 import React from 'react';
+import { Container } from 'react-bootstrap';
 import filter from 'leo-profanity';
 
 const Message = (props) => {
@@ -7,15 +8,15 @@ const Message = (props) => {
   const { message } = props;
   return (
     <>
-      <div className="message">
-        <div className="messageAuth">
+      <Container className="message">
+        <div className="messageAuth text-break">
           <b>{user}</b>
           :
           {' '}
           {filter.clean(message)}
         </div>
-        <div className="messageText" />
-      </div>
+        <Container className="messageText" />
+      </Container>
     </>
   );
 };
