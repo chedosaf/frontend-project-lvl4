@@ -52,13 +52,13 @@ const ModalAdd = (props) => {
       centered
     >
       <Modal.Header closeButton onHide={onHide}>
-        <Modal.Title>Добавить канал</Modal.Title>
+        <Modal.Title>{t('addChannel')}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
         <Container fluid className="p-0">
           <Form onSubmit={formik.handleSubmit}>
-            <Form.Label className="visually-hidden" htmlFor="newchannelname">Имя канала</Form.Label>
+            <Form.Label className="visually-hidden" htmlFor="newchannelname">{t('channelName')}</Form.Label>
             <Form.Control
               onChange={formik.handleChange}
               name="newchannelname"
@@ -75,11 +75,11 @@ const ModalAdd = (props) => {
             <Container className="d-grid gap-2 d-md-flex mt-2 justify-content-md-end p-0">
 
               <Button variant="secondary" type="button" onClick={onHide} className="mr-md-2">
-                Отмена
+                {t('cancel')}
               </Button>
 
               <Button disabled={btnDisable} variant="primary" type="submit">
-                Отправить
+                {t('send')}
               </Button>
 
             </Container>

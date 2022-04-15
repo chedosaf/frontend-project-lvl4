@@ -3,10 +3,12 @@ import React, { useContext } from 'react';
 import {
   Modal, FormGroup, Container, Button,
 } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import channelChangeContext from '../../contexts/channelChangeContext.jsx';
 
 const ModalRemove = (props) => {
   const channelChange = useContext(channelChangeContext);
+  const { t } = useTranslation();
   const {
     onHide,
     notify,
@@ -29,22 +31,22 @@ const ModalRemove = (props) => {
       centered
     >
       <Modal.Header closeButton onHide={onHide}>
-        <Modal.Title>Удалить канал</Modal.Title>
+        <Modal.Title>{t('removeChannel')}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
-        <p className="lead">Уверены?</p>
+        <p className="lead">{t('sure')}</p>
         <form onSubmit={onSubmit}>
           <FormGroup>
 
             <Container className="d-grid gap-2 d-md-flex mt-2 justify-content-md-end p-0">
 
               <Button variant="secondary" type="button" onClick={onHide} className="mr-md-2">
-                Отмена
+                {t('cancel')}
               </Button>
 
               <Button disabled={btnDisable} variant="danger" type="submit">
-                Удалить
+                {t('delete')}
               </Button>
 
             </Container>

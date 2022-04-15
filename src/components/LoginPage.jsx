@@ -15,7 +15,7 @@ const LoginPage = () => {
         <Col xxl={5} md={6} sm={10} xs={12}>
           <Card className="shadow-sm text-center">
             <Container fluid>
-              <Card.Img variant="top" src="https://www.seekpng.com/png/full/356-3562377_personal-user.png" className="rounded-circle" alt="Войти" />
+              <Card.Img variant="top" src="https://www.seekpng.com/png/full/356-3562377_personal-user.png" className="rounded-circle" alt={t('registration.entrance')} />
             </Container>
             <Card.Body>
               <Card.Title>{t('registration.entrance')}</Card.Title>

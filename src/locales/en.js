@@ -38,5 +38,13 @@ export default {
     unfoundPage: 'Page is not found',
     goTo: 'You could go to',
     mainPageLink: 'main page!',
+    addChannel: 'Add channel',
+    deleteChannel: 'Delete Channel',
+    renameChannel: 'Rename Channel',
+    cancel: 'Cancel',
+    channelName: 'Channel Name',
+    sure: 'Are you sure?',
+    channelControl: 'Channel Control',
+    newMessage: 'New message',
   },
 };

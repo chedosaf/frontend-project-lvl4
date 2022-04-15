@@ -66,7 +66,7 @@ const MainChatBar = (props) => {
           <Container fluid className="input-group p-0">
             <Form.Control
               name="body"
-              aria-label="Новое сообщение"
+              aria-label={t('newMessage')}
               placeholder={t('enterMessage')}
               className="border-0 p-0 ps-2 form-control"
               value={message}

@@ -71,7 +71,7 @@ const SignForm = () => {
   return (
     <Form noValidate onSubmit={formik.handleSubmit} className="mt-3 mt-mb-0">
       <Form.Group>
-        <Form.Label className="visually-hidden" htmlFor="username">Имя пользователя</Form.Label>
+        <Form.Label className="visually-hidden" htmlFor="username">{t('registration.userName')}</Form.Label>
         <Form.Control
           id="username"
           name="username"
@@ -88,7 +88,7 @@ const SignForm = () => {
           : null}
       </Form.Group>
       <Form.Group>
-        <Form.Label className="visually-hidden" htmlFor="password">Пароль</Form.Label>
+        <Form.Label className="visually-hidden" htmlFor="password">{t('registration.password')}</Form.Label>
         <Form.Control
           id="password"
           name="password"
@@ -105,7 +105,7 @@ const SignForm = () => {
           : null}
       </Form.Group>
       <Form.Group>
-        <Form.Label className="visually-hidden" htmlFor="confirmPassword">Подтвердите пароль</Form.Label>
+        <Form.Label className="visually-hidden" htmlFor="confirmPassword">{t('registration.passwordConferm')}</Form.Label>
         <Form.Control
           id="confirmPassword"
           name="confirmPassword"

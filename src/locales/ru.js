@@ -39,5 +39,14 @@ export default {
     unfoundPage: 'Страница не найдена',
     goTo: 'Но вы можете перейти',
     mainPageLink: 'на главную страницу!',
+    addChannel: 'Добавить канал',
+    deleteChannel: 'Удалить канал',
+    renameChannel: 'Переименовать канал',
+    cancel: 'Отмена',
+    channelName: 'Имя канала',
+    sure: 'Уверены?',
+    channelControl: 'Управление каналом',
+    newMessage: 'Новое сообщение',
+
   },
 };
