@@ -33,7 +33,7 @@ const App = () => {
     renameChannellSuccess: () => toast.success(t('notify.renameChannellSuccess')),
     removeChannellSuccess: () => toast.success(t('notify.removeChannellSuccess')),
     showChannellFailer: () => toast.warn(t('notify.updateChannellFailer')),
-    fetchDataFailer: () => toast.warn(t('notify.fetchDataFailer')),
+    fetchDataFailure: () => toast.warn(t('notify.fetchDataFailure')),
   };
 
   return (

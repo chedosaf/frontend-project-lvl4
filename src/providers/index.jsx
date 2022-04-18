@@ -16,14 +16,14 @@ const AuthProvider = (props) => {
   };
 
   const getAuthHeader = () => {
-    const userId = JSON.parse(userInfo);
+    const userId = JSON.parse(localStorage.getItem('userId'));
     if (userId && userId.token) {
       return { Authorization: `Bearer ${userId.token}` };
     }
     return {};
   };
 
-  const getUserName = () => JSON.parse(userInfo).username;
+  const getUserName = () => JSON.parse(localStorage.getItem('userId')).username;
 
   return (
     <authContext.Provider value={{

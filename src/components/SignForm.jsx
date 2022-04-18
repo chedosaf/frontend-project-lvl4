@@ -46,6 +46,7 @@ const SignForm = () => {
       is: (val) => (!!(val && val.length > 0)),
       then: yup.string().oneOf(
         [yup.ref('password')],
+        t('validationErrors.matchPassword'),
       ),
     }).required(),
   });
@@ -60,8 +61,7 @@ const SignForm = () => {
     onSubmit: async (values) => {
       try {
         const res = await axios.post(routes.signUpPath(), values);
-        auth.logIn();
-        localStorage.setItem('userId', JSON.stringify(res.data));
+        auth.logIn(res);
         navigate('/');
       } catch (err) {
         localStorage.clear();
