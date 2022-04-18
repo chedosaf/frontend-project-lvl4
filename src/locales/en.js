@@ -13,10 +13,9 @@ export default {
       nickNameBusy: 'This user already exists',
     },
     validationErrors: {
-      min: 'Username must be more than 3 characters',
+      min: 'Must be more than 6 characters',
       max: 'Username must not exceed 20 characters',
       required: 'Required',
-      minPassword: 'Password must be more than 6 characters',
       matchPassword: 'Passwords must match',
     },
     notify: {

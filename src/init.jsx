@@ -73,7 +73,7 @@ const init = (socketInit) => {
 
   };
 
-  const sendMessage = (message, userId, curChennel, setBtnDisable) => socket.emit('newMessage', { message, auth: userId.username, chatId: curChennel }, (response) => {
+  const sendMessage = (message, userName, curChennel, setBtnDisable) => socket.emit('newMessage', { message, auth: userName, chatId: curChennel }, (response) => {
     if (response.status === 'ok') {
       setBtnDisable(false);
     } else {
@@ -82,7 +82,7 @@ const init = (socketInit) => {
     }
   });
 
-  const userId = !!localStorage.getItem('userId');
+  const userInfo = localStorage.getItem('userId');
 
   const channelChange = (changeName, values, setBtnDisable, notify) => {
     socket.emit(changeName, values, (response) => {
@@ -99,7 +99,7 @@ const init = (socketInit) => {
   return (
     <RollbarProvider config={rollbarConfig}>
       <ErrorBoundary>
-        <AuthProvider id={userId}>
+        <AuthProvider userInfo={userInfo}>
           <Provider store={store}>
             <I18nextProvider i18n={i18n}>
               <sendMessageContext.Provider value={sendMessage}>

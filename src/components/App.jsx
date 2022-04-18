@@ -29,21 +29,11 @@ if (process.env.NODE_ENV !== 'production') {
 const App = () => {
   const { t } = useTranslation();
   const notify = {
-    addChannellSuccess: () => toast.success(t('notify.addChannellSuccess'), {
-      position: toast.POSITION.TOP_RIGHT,
-    }),
-    renameChannellSuccess: () => toast.success(t('notify.renameChannellSuccess'), {
-      position: toast.POSITION.TOP_RIGHT,
-    }),
-    removeChannellSuccess: () => toast.success(t('notify.removeChannellSuccess'), {
-      position: toast.POSITION.TOP_RIGHT,
-    }),
-    showChannellFailer: () => toast.warn(t('notify.updateChannellFailer'), {
-      position: toast.POSITION.TOP_RIGHT,
-    }),
-    fetchDataFailer: () => toast.warn(t('notify.fetchDataFailer'), {
-      position: toast.POSITION.TOP_RIGHT,
-    }),
+    addChannellSuccess: () => toast.success(t('notify.addChannellSuccess')),
+    renameChannellSuccess: () => toast.success(t('notify.renameChannellSuccess')),
+    removeChannellSuccess: () => toast.success(t('notify.removeChannellSuccess')),
+    showChannellFailer: () => toast.warn(t('notify.updateChannellFailer')),
+    fetchDataFailer: () => toast.warn(t('notify.fetchDataFailer')),
   };
 
   return (
@@ -65,7 +55,7 @@ const App = () => {
           <Route path={routes.else()} element={<Navigate to={routes.notFoundPage()} />} />
         </Routes>
       </Router>
-      <ToastContainer />
+      <ToastContainer position="top-right" />
     </>
   );
 };

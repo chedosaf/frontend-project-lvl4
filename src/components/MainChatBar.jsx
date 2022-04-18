@@ -8,6 +8,7 @@ import {
   Col, Container, Button, Form,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import useAuth from '../hooks/index.js';
 import Message from './Message.jsx';
 import channelsGetters from '../selectors/channelsSelectors.js';
 import messagessGetters from '../selectors/messagesSelectors.js';
@@ -17,6 +18,7 @@ const MainChatBar = (props) => {
   const { btnDisable, setBtnDisable } = props;
   const sendMessage = useContext(sendMessageContext);
   const { t } = useTranslation();
+  const auth = useAuth();
   const inputRef = useRef();
   const [message, setMessage] = useState('');
   const curChennel = useSelector(channelsGetters.getCurrentChannelId);
@@ -30,8 +32,8 @@ const MainChatBar = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setBtnDisable(true);
-    const userId = JSON.parse(localStorage.getItem('userId'));
-    sendMessage(message, userId, curChennel, setBtnDisable);
+    const userName = auth.getUserName();
+    sendMessage(message, userName, curChennel, setBtnDisable);
     setMessage('');
   };
 

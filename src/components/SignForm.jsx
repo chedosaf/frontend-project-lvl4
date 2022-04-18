@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   Button, Form,
 } from 'react-bootstrap';
+import { setLocale } from 'yup';
 import { useTranslation } from 'react-i18next';
 import useAuth from '../hooks/index.js';
 import routes from '../routes.js';
@@ -24,19 +25,29 @@ const SignForm = () => {
     }
   }, []);
 
+  setLocale({
+    mixed: {
+      required: t('validationErrors.required'),
+      oneOf: t('validationErrors.matchPassword'),
+    },
+    string: {
+      min: t('validationErrors.min'),
+      max: t('validationErrors.max'),
+    },
+  });
+
   const DisplayingErrorMessagesSchema = yup.object().shape({
     username: yup.string()
-      .min(3, t('validationErrors.min'))
-      .max(20, t('validationErrors.max'))
-      .required(t('validationErrors.required')),
-    password: yup.string().min(6, t('validationErrors.minPassword')).required(t('validationErrors.required')),
+      .min(6)
+      .max(20)
+      .required(),
+    password: yup.string().min(6).required(),
     confirmPassword: yup.string().when('password', {
       is: (val) => (!!(val && val.length > 0)),
       then: yup.string().oneOf(
         [yup.ref('password')],
-        t('validationErrors.matchPassword'),
       ),
-    }),
+    }).required(),
   });
 
   const formik = useFormik({

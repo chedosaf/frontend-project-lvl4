@@ -13,10 +13,9 @@ export default {
       nickNameBusy: 'Такой пользователь уже существует',
     },
     validationErrors: {
-      min: 'От 3 до 20 символов',
-      max: 'От 3 до 20 символов',
+      min: 'Не менее 6 символов',
+      max: 'Более 20 символов',
       required: 'Обязательное поле',
-      minPassword: 'Не менее 6 символов',
       matchPassword: 'Пароли должны совпадать',
     },
     notify: {
