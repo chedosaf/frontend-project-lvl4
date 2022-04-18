@@ -5,7 +5,10 @@ const AuthProvider = (props) => {
   const { children, id } = props;
   const defaultLog = id;
   const [loggedIn, setLoggedIn] = useState(defaultLog);
-  const logIn = () => setLoggedIn(true);
+  const logIn = (res) => {
+    localStorage.setItem('userId', JSON.stringify(res.data));
+    setLoggedIn(true);
+  };
   const logOut = () => {
     localStorage.removeItem('userId');
     setLoggedIn(false);
