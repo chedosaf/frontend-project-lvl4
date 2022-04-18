@@ -82,6 +82,8 @@ const init = (socketInit) => {
     }
   });
 
+  const userId = !!localStorage.getItem('userId');
+
   const channelChange = (changeName, values, setBtnDisable, notify) => {
     socket.emit(changeName, values, (response) => {
       if (response.status === 'ok') {
@@ -97,7 +99,7 @@ const init = (socketInit) => {
   return (
     <RollbarProvider config={rollbarConfig}>
       <ErrorBoundary>
-        <AuthProvider>
+        <AuthProvider id={userId}>
           <Provider store={store}>
             <I18nextProvider i18n={i18n}>
               <sendMessageContext.Provider value={sendMessage}>

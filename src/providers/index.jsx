@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import authContext from '../contexts/authContext.jsx';
 
-const AuthProvider = ({ children }) => {
-  const defaultLog = !!localStorage.getItem('userId');
+const AuthProvider = (props) => {
+  const { children, id } = props;
+  const defaultLog = id;
   const [loggedIn, setLoggedIn] = useState(defaultLog);
   const logIn = () => setLoggedIn(true);
   const logOut = () => {
