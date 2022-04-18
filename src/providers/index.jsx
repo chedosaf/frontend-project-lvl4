@@ -7,6 +7,7 @@ const AuthProvider = (props) => {
 
   const logIn = (res) => {
     localStorage.setItem('userId', JSON.stringify(res.data));
+
     setLoggedIn(true);
   };
 
