@@ -8,6 +8,7 @@ import SignForm from './SignForm.jsx';
 
 const SignPage = () => {
   const { t } = useTranslation();
+
   return (
     <Container fluid>
       <Row className="justify-content-center aligh-content-center">
