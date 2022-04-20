@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   Button, Form,
 } from 'react-bootstrap';
+import { setLocale } from 'yup';
 import { useTranslation } from 'react-i18next';
 import useAuth from '../hooks/index.js';
 import routes from '../routes.js';
@@ -24,19 +25,28 @@ const SignForm = () => {
     }
   }, []);
 
+  setLocale({
+    mixed: {
+      required: t('validationErrors.required'),
+      oneOf: t('validationErrors.matchPassword'),
+    },
+    string: {
+      min: ({ min }) => t('validationErrors.min', { value: min }), // Todo: использованить одно сообщение для полей username и password нет возможности, тк тесты Hexlet завязаны на разных сообщениях для каждого из полей
+    },
+  });
+
   const DisplayingErrorMessagesSchema = yup.object().shape({
     username: yup.string()
       .min(3, t('validationErrors.signMinNameValidation'))
       .max(20, t('validationErrors.signMinNameValidation'))
-      .required(t('validationErrors.required')),
-    password: yup.string().min(6, t('validationErrors.signMinPassword')).required(t('validationErrors.required')),
+      .required(),
+    password: yup.string().min(6).required(),
     confirmPassword: yup.string().when('password', {
       is: (val) => (!!(val && val.length > 0)),
       then: yup.string().oneOf(
         [yup.ref('password')],
-        t('validationErrors.matchPassword'),
       ),
-    }).required(t('validationErrors.required')),
+    }).required(),
   });
 
   const formik = useFormik({
