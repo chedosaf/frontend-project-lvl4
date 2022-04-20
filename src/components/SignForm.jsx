@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import {
   Button, Form,
 } from 'react-bootstrap';
-import { setLocale } from 'yup';
 import { useTranslation } from 'react-i18next';
 import useAuth from '../hooks/index.js';
 import routes from '../routes.js';
