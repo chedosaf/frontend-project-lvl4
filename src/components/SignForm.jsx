@@ -27,7 +27,7 @@ const SignForm = () => {
 
   const DisplayingErrorMessagesSchema = yup.object().shape({
     username: yup.string()
-      .min(6, t('validationErrors.signMinNameValidation'))
+      .min(3, t('validationErrors.signMinNameValidation'))
       .max(20, t('validationErrors.signMinNameValidation'))
       .required(t('validationErrors.required')),
     password: yup.string().min(6, t('validationErrors.signMinPassword')).required(t('validationErrors.required')),
