@@ -15,6 +15,8 @@ export default {
     validationErrors: {
       min: 'Не менее 6 символов',
       max: 'Более 20 символов',
+      signMinNameValidation: 'От 3 до 20 символов',
+      signMinPassword: 'Не менее 6 символов',
       required: 'Обязательное поле',
       matchPassword: 'Пароли должны совпадать',
     },

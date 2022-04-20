@@ -13,8 +13,8 @@ export default {
       nickNameBusy: 'This user already exists',
     },
     validationErrors: {
-      min: 'Must be more than 6 characters',
-      max: 'Username must not exceed 20 characters',
+      signMinNameValidation: 'From 3 to 20 symbols',
+      signMinPassword: '6 symbols min',
       required: 'Required',
       matchPassword: 'Passwords must match',
     },

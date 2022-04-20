@@ -25,30 +25,19 @@ const SignForm = () => {
     }
   }, []);
 
-  setLocale({
-    mixed: {
-      required: t('validationErrors.required'),
-      oneOf: t('validationErrors.matchPassword'),
-    },
-    string: {
-      min: t('validationErrors.min'),
-      max: t('validationErrors.max'),
-    },
-  });
-
   const DisplayingErrorMessagesSchema = yup.object().shape({
     username: yup.string()
-      .min(6)
-      .max(20)
-      .required(),
-    password: yup.string().min(6).required(),
+      .min(6, t('validationErrors.signMinNameValidation'))
+      .max(20, t('validationErrors.signMinNameValidation'))
+      .required(t('validationErrors.required')),
+    password: yup.string().min(6, t('validationErrors.signMinPassword')).required(t('validationErrors.required')),
     confirmPassword: yup.string().when('password', {
       is: (val) => (!!(val && val.length > 0)),
       then: yup.string().oneOf(
         [yup.ref('password')],
         t('validationErrors.matchPassword'),
       ),
-    }).required(),
+    }).required(t('validationErrors.required')),
   });
 
   const formik = useFormik({
