@@ -35,8 +35,6 @@ const LoginForm = () => {
       username: '',
       password: '',
     },
-    validateOnChange: false,
-    validateOnBlur: false,
     validationSchema: DisplayingErrorMessagesSchema,
     onSubmit: async (values) => {
       try {
