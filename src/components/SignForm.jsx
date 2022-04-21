@@ -55,6 +55,8 @@ const SignForm = () => {
       password: '',
       confirmPassword: '',
     },
+    validateOnChange: false,
+    validateOnBlur: false,
     validationSchema: DisplayingErrorMessagesSchema,
     onSubmit: async (values) => {
       try {
