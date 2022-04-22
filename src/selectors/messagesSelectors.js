@@ -1,4 +1,4 @@
-const getActiveMessages = (state) => state.messages.messages
+const selectActiveMessages = (state) => state.messages.messages
   .filter((el) => el.chatId === state.channels.currentChannelId);
 
-export default { getActiveMessages };
+export default { selectActiveMessages };

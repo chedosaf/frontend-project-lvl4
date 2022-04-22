@@ -10,8 +10,8 @@ import {
 import { useTranslation } from 'react-i18next';
 import useAuth from '../hooks/index.js';
 import Message from './Message.jsx';
-import channelsGetters from '../selectors/channelsSelectors.js';
-import messagessGetters from '../selectors/messagesSelectors.js';
+import channelsSelectors from '../selectors/channelsSelectors.js';
+import messagesSelectors from '../selectors/messagesSelectors.js';
 import sendMessageContext from '../contexts/sendMessageContext.jsx';
 
 const MainChatBar = (props) => {
@@ -21,9 +21,9 @@ const MainChatBar = (props) => {
   const auth = useAuth();
   const inputRef = useRef();
   const [message, setMessage] = useState('');
-  const curChennel = useSelector(channelsGetters.getCurrentChannelId);
-  const activeChannel = useSelector(channelsGetters.getActiveChannel);
-  const currentMessages = useSelector(messagessGetters.getActiveMessages);
+  const curChennel = useSelector(channelsSelectors.getCurrentChannelId);
+  const activeChannel = useSelector(channelsSelectors.selectActiveChannel);
+  const currentMessages = useSelector(messagesSelectors.selectActiveMessages);
 
   const messageChange = ({ target }) => {
     setMessage(target.value);

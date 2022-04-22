@@ -7,14 +7,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import cn from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { setCurrentChannelId } from '../slices/channelsSlice.js';
-import getters from '../selectors/channelsSelectors.js';
+import channelsSelectors from '../selectors/channelsSelectors.js';
 
 const ChannelsBar = (props) => {
   const { showModal } = props;
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const storeChannels = useSelector(getters.getChannels);
-  const activeChannel = useSelector(getters.getCurrentChannelId);
+  const storeChannels = useSelector(channelsSelectors.getChannels);
+  const activeChannel = useSelector(channelsSelectors.getCurrentChannelId);
   const makeActive = (id) => {
     dispatch(setCurrentChannelId(id));
   };
