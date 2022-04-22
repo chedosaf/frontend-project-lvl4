@@ -1,6 +1,6 @@
 // @ts-check
 import React, {
-  useState, useEffect, useRef, useContext,
+  useState, useEffect, useRef,
 } from 'react';
 import { useSelector } from 'react-redux';
 import { useStickyScroll } from 'use-chat-scroll';
@@ -8,15 +8,15 @@ import {
   Col, Container, Button, Form,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import useAuth from '../hooks/index.js';
+import useAuth from '../hooks/useAuthContext.js';
+import useApi from '../hooks/useApiContext.js';
 import Message from './Message.jsx';
 import channelsSelectors from '../selectors/channelsSelectors.js';
 import messagesSelectors from '../selectors/messagesSelectors.js';
-import sendMessageContext from '../contexts/sendMessageContext.jsx';
 
 const MainChatBar = (props) => {
   const { btnDisable, setBtnDisable } = props;
-  const sendMessage = useContext(sendMessageContext);
+  const { sendMessage } = useApi();
   const { t } = useTranslation();
   const auth = useAuth();
   const inputRef = useRef();

@@ -14,8 +14,7 @@ import channelsReducer, {
 import messagesReducer, {
   addMessage,
 } from './slices/messagesSlice.js';
-import sendMessageContext from './contexts/sendMessageContext.jsx';
-import channelChangeContext from './contexts/channelChangeContext.jsx';
+import ApiContext from './contexts/ApiContext.jsx';
 
 const init = (socketInit) => {
   const store = configureStore({
@@ -96,17 +95,20 @@ const init = (socketInit) => {
     });
   };
 
+  const contexts = {
+    sendMessage,
+    channelChange,
+  };
+
   return (
     <RollbarProvider config={rollbarConfig}>
       <ErrorBoundary>
         <AuthProvider userInfo={userInfo}>
           <Provider store={store}>
             <I18nextProvider i18n={i18n}>
-              <sendMessageContext.Provider value={sendMessage}>
-                <channelChangeContext.Provider value={channelChange}>
-                  <App />
-                </channelChangeContext.Provider>
-              </sendMessageContext.Provider>
+              <ApiContext.Provider value={contexts}>
+                <App />
+              </ApiContext.Provider>
             </I18nextProvider>
           </Provider>
         </AuthProvider>

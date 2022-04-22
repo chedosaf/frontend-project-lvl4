@@ -1,13 +1,13 @@
 // @ts-check
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   Modal, FormGroup, Container, Button,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import channelChangeContext from '../../contexts/channelChangeContext.jsx';
+import useApi from '../../hooks/useApiContext.js';
 
 const ModalRemove = (props) => {
-  const channelChange = useContext(channelChangeContext);
+  const { channelChange } = useApi();
   const { t } = useTranslation();
   const {
     onHide,

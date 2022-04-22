@@ -8,7 +8,7 @@ import {
   Button, Form,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import useAuth from '../hooks/index.js';
+import useAuth from '../hooks/useAuthContext.js';
 import routes from '../routes.js';
 
 const LoginForm = () => {

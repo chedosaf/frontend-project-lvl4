@@ -1,5 +1,5 @@
 // @ts-check
-import React, { useEffect, useRef, useContext } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
 import {
@@ -7,11 +7,11 @@ import {
 } from 'react-bootstrap';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
-import getters from '../../selectors/channelsSelectors.js';
-import channelChangeContext from '../../contexts/channelChangeContext.jsx';
+import channelsSelectors from '../../selectors/channelsSelectors.js';
+import useApi from '../../hooks/useApiContext.js';
 
 const ModalRename = (props) => {
-  const channelChange = useContext(channelChangeContext);
+  const { channelChange } = useApi();
   const {
     onHide,
     notify,
@@ -20,7 +20,7 @@ const ModalRename = (props) => {
     setBtnDisable,
   } = props;
   const { t } = useTranslation();
-  const storeChannels = useSelector(getters.getChannels);
+  const storeChannels = useSelector(channelsSelectors.getChannels);
   const storeChannelsNames = storeChannels.map((channel) => channel.name);
   const { item } = modalInfo;
   const DisplayingErrorMessagesSchema = yup.object().shape({

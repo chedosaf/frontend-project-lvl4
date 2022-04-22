@@ -4,8 +4,7 @@ import { Container } from 'react-bootstrap';
 import filter from 'leo-profanity';
 
 const Message = (props) => {
-  const { user } = props;
-  const { message } = props;
+  const { user, message } = props;
   return (
     <>
       <Container className="message">
